@@ -1,8 +1,12 @@
 import "./App.scss";
+import Navbar from "./components/navbar/navbar";
 
 const App = () => {
     return (<div>
-        Ecommerce App
+        <Navbar/>
+        <div>
+            My DWY Store
+        </div>
     </div>);
 }
 
