@@ -1,4 +1,4 @@
-require("./db/db_connect");
+require("./db/db-connect");
 const app = require("./index");
 
 app.listen(5000, () => {
