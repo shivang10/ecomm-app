@@ -1,4 +1,4 @@
-const dbHandler = require('./db-setup');
+const dbHandler = require('../db-setup');
 const User = require("../../models/user");
 
 beforeAll(async () => await dbHandler.connect());
@@ -7,10 +7,7 @@ afterEach(async () => await dbHandler.clearDatabase());
 
 afterAll(async () => await dbHandler.closeDatabase());
 
-const username = require("../dummy-data/user-dummy-data");
-const email = require("../dummy-data/user-dummy-data");
-const password = require("../dummy-data/user-dummy-data");
-const phoneNumber = require("../dummy-data/user-dummy-data");
+const {username, email, password, phoneNumber} = require("../dummy-data/user-dummy-data");
 
 
 describe('user schema ', () => {
@@ -23,7 +20,7 @@ describe('user schema ', () => {
         expect(user1.username).toEqual(username);
     });
 
-    it('should give error on missing email', async () => {
+    it('error on missing email', async () => {
         const data = {
             username, password
         }
@@ -38,7 +35,7 @@ describe('user schema ', () => {
         }
     });
 
-    it('should give error on missing username', async () => {
+    it('error on missing username', async () => {
         const data = {
             email, password
         }
@@ -53,7 +50,7 @@ describe('user schema ', () => {
         }
     });
 
-    it('should give error on missing password', async () => {
+    it('error on missing password', async () => {
         const data = {
             username, email
         }
@@ -68,7 +65,7 @@ describe('user schema ', () => {
         }
     });
 
-    it('should give error on missing phone number', async () => {
+    it('error on missing phone number', async () => {
         const data = {
             username, email, password
         }

@@ -1,9 +1,7 @@
 const username = "username";
-const email = "email@abc.com";
+const email = "email@email.com";
 const password = "password";
 const phoneNumber = "79679343";
+const wrongEmail = "abc@def";
 
-module.exports = username;
-module.exports = email;
-module.exports = password;
-module.exports = phoneNumber;
+module.exports = {username, email, password, phoneNumber, wrongEmail};
