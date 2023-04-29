@@ -1,6 +1,11 @@
-@import "styles/abstracts/colors";
+@import "styles/abstracts/colors-names";
+@import "styles/abstracts/colors-mapping";
+@import "styles/abstracts/component-sizes";
 
 @import "styles/base/base";
 
 @import "styles/components/navbar";
 @import "styles/components/user-auth";
+@import "styles/components/headings";
+@import "styles/components/buttons";
+@import "styles/components/icons";

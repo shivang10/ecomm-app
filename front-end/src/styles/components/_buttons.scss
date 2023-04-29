@@ -1,0 +1,57 @@
+@each $size in $sizes-btn {
+  @each $colName, $col in $btn-colors {
+    .btn-#{$size}-#{$colName} {
+      font-size: $size;
+      font-weight: 500;
+      text-decoration: none;
+      color: $col;
+      background-color: $color-white;
+
+      margin: 5px 1px;
+      padding: 10px 14px;
+
+      border: none;
+      border-radius: 6px;
+
+      cursor: pointer;
+      user-select: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        border: 1px solid $color-primary-grey-main;
+      }
+    }
+  }
+}
+
+@each $size in $sizes-btn {
+  @each $colName, $col in $btn-colors-rvt {
+    .btn-#{$size}-#{$colName}-rvt {
+      font-size: $size;
+      font-weight: 500;
+      text-decoration: none;
+      background-color: $col;
+      color: $color-white;
+
+      margin: 5px 1px;
+      padding: 10px 14px;
+
+      border: none;
+      border-radius: 6px;
+
+      cursor: pointer;
+      user-select: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        border: 1px solid $color-primary-grey-main;
+      }
+    }
+  }
+}

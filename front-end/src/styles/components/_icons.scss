@@ -1,0 +1,11 @@
+@each $pad in $icons-padding {
+  .icon-left-#{$pad} {
+    padding-left: $pad;
+  }
+}
+
+@each $pad in $icons-padding {
+  .icon-right-#{$pad} {
+    margin-right: $pad;
+  }
+}

@@ -1,0 +1,11 @@
+@each $size in $sizes-heading {
+  @each $colName, $col in $text-colors {
+    @each $wt in $size-bold {
+      .text-#{$size}-#{$colName}-#{$wt} {
+        font-size: $size;
+        color: $col;
+        font-weight: $wt;
+      }
+    }
+  }
+}
