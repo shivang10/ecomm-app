@@ -1,6 +1,6 @@
 const Homepage = () => {
     return (<div>
-        My DWY Store
+        My DMY Store
     </div>)
 }
 
