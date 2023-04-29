@@ -1,13 +1,13 @@
 import "./App.scss";
 import Navbar from "./components/navbar/navbar";
+import PageRoutes from "./routes/routes";
+import {BrowserRouter as Router} from 'react-router-dom';
 
 const App = () => {
-    return (<div>
+    return (<Router>
         <Navbar/>
-        <div>
-            My DWY Store
-        </div>
-    </div>);
+        <PageRoutes/>
+    </Router>);
 }
 
 export default App;
