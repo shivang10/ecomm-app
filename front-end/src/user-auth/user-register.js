@@ -26,28 +26,32 @@ const UserRegister = () => {
                 console.log(err)
             });
     }
-    return (<div className="userAuth-background">
-        <form className="userAuth-form">
-            <h3>Register Here</h3>
+    return (
+        <div className="userAuth">
+            <form autoComplete="off" className="userAuth-form">
+                <div className="text-36px-black-600 flex-hc-vc">Register</div>
+                <hr className="divider-horizontal"/>
 
-            <label htmlFor="username">Email</label>
-            <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email"/>
+                <label className="text-24px-black-500" htmlFor="username">Email</label>
+                <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email"/>
 
-            <label htmlFor="username">Username</label>
-            <input value={userDetails.username} onChange={handleChange} type="text" placeholder="Username"
-                   name="username"/>
+                <label className="text-24px-black-500" htmlFor="username">Username</label>
+                <input value={userDetails.username} onChange={handleChange} type="text" placeholder="Username"
+                       name="username"/>
 
-            <label htmlFor="username">Phone Number</label>
-            <input value={userDetails.phoneNumber} onChange={handleChange} type="text" placeholder="Phone Number"
-                   name="phoneNumber"/>
+                <label className="text-24px-black-500" htmlFor="username">Phone Number</label>
+                <input value={userDetails.phoneNumber} onChange={handleChange} type="text" placeholder="Phone Number"
+                       name="phoneNumber"/>
 
-            <label htmlFor="password">Password</label>
-            <input value={userDetails.password} onChange={handleChange} type="password" placeholder="Password"
-                   name="password"/>
+                <label className="text-24px-black-500" htmlFor="password">Password</label>
+                <input value={userDetails.password} onChange={handleChange} type="password" placeholder="Password"
+                       name="password"/>
 
-            <button onClick={handleSubmit}>Register</button>
-            <button>Already a user? <Link to={userLoginLink}>Login</Link></button>
-        </form>
+                <div className="btn-22px-black" onClick={handleSubmit}>Register</div>
+                <div className="text-20px-black-500 flex-hc-vc">
+                    Already a user? <Link className="btn-20px-black" to={userLoginLink}>Login</Link>
+                </div>
+            </form>
     </div>)
 }
 

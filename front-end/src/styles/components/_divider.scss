@@ -1,0 +1,21 @@
+.divider-vertical {
+  height: 1.8rem;
+  width: 3px;
+  margin-inline: 2px;
+  background-color: $color-grey-2;
+}
+
+.divider__small-vertical {
+  height: 1.6rem;
+  width: 3px;
+  margin-inline: 0.5rem;
+  background-color: $color-grey-2;
+}
+
+
+.divider-horizontal {
+  margin-block: 1rem;
+  border-top: 5px solid $color-primary-grey-main;
+  border-radius: 4px;
+}
+
