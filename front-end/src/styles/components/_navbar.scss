@@ -1,5 +1,12 @@
 .navbar {
 
+  &__logo {
+    width: 7rem;
+    height: auto;
+
+    margin-right: 1rem;
+  }
+
   &__top {
     padding: 1rem 2rem;
 

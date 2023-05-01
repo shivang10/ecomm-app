@@ -1,0 +1,26 @@
+.snackBar {
+  font-size: 1rem;
+  font-weight: bold;
+
+  border-radius: 6px;
+
+
+  text-align: center;
+  padding: 6px 10px;
+
+  &__error {
+    color: $color-alert;
+    background-color: $color-alert-light;
+  }
+
+  &__success {
+    color: $color-success;
+    background-color: $color-success-light;
+  }
+
+
+  &__warning {
+    color: $color-warn;
+    background-color: $color-warn-light;
+  }
+}

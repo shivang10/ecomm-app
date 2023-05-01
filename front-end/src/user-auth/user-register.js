@@ -3,12 +3,15 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import {userLoginLink} from "../routes/routesLink";
 import {userAuthRegisterService} from "./services";
+import Snackbar from "../components/snackbar/snackbar";
 
 const UserRegister = () => {
 
     const [userDetails, updateUserDetails] = useState({
         "email": "", "password": "", "username": "", "phoneNumber": ""
     });
+
+    const [snackType, updateSnackType] = useState({type: "", message: ""});
 
     const handleChange = (event) => {
         updateUserDetails({
@@ -21,14 +24,16 @@ const UserRegister = () => {
         userAuthRegisterService(userDetails)
             .then(res => {
                 console.log(res);
+                updateSnackType({type: "success", message: "Successfully logged in."})
             })
             .catch(err => {
-                console.log(err)
+                console.log(err);
+                updateSnackType({type: "error", message: "Some error came up."})
             });
     }
     return (
-        <div className="userAuth">
-            <form autoComplete="off" className="userAuth-form">
+        <div className="flex-hc-vc">
+            <form className="userAuth-form">
                 <div className="text-36px-black-600 flex-hc-vc">Register</div>
                 <hr className="divider-horizontal"/>
 
@@ -47,10 +52,11 @@ const UserRegister = () => {
                 <input value={userDetails.password} onChange={handleChange} type="password" placeholder="Password"
                        name="password"/>
 
-                <div className="btn-22px-black" onClick={handleSubmit}>Register</div>
+                <div className="btn-22px-black flex-hc-vc" onClick={handleSubmit}>Register</div>
                 <div className="text-20px-black-500 flex-hc-vc">
                     Already a user? <Link className="btn-20px-black" to={userLoginLink}>Login</Link>
                 </div>
+                <Snackbar type={snackType.type} message={snackType.message}/>
             </form>
     </div>)
 }

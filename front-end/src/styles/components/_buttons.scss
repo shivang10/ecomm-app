@@ -16,9 +16,7 @@
       cursor: pointer;
       user-select: none;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: inline-block;
 
       &:hover {
         border: 1px solid $color-primary-grey-main;
@@ -45,9 +43,7 @@
       cursor: pointer;
       user-select: none;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: inline-block;
 
       &:hover {
         border: 1px solid $color-primary-grey-main;
