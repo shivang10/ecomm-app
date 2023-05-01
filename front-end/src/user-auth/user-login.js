@@ -5,6 +5,8 @@ import {userRegisterLink} from "../routes/routesLink";
 import {userAuthLoginService} from "./services";
 import Snackbar from "../components/snackbar/snackbar";
 import {BsFillArrowRightCircleFill} from "react-icons/bs";
+import {setLocalCache} from "../utils/local-cache/local-cache";
+import {enums} from "../utils/enums/enums";
 
 const UserLogin = () => {
 
@@ -24,10 +26,11 @@ const UserLogin = () => {
         event.preventDefault();
         userAuthLoginService(userDetails)
             .then(res => {
-                updateSnackType({type: "success", message: res.data.message})
+                setLocalCache(enums.user.token, res.data.data.token);
+                updateSnackType({type: enums.snackBar.success, message: res.data.message})
             })
             .catch(err => {
-                updateSnackType({type: "error", message: err.response.data.message})
+                updateSnackType({type: enums.snackBar.error, message: err.response.data.message})
             });
     }
 

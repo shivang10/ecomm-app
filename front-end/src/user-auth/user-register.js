@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {userLoginLink} from "../routes/routesLink";
 import {userAuthRegisterService} from "./services";
 import Snackbar from "../components/snackbar/snackbar";
+import {enums} from "../utils/enums/enums";
 
 const UserRegister = () => {
 
@@ -23,10 +24,10 @@ const UserRegister = () => {
         event.preventDefault();
         userAuthRegisterService(userDetails)
             .then(res => {
-                updateSnackType({type: "success", message: res.data.message})
+                updateSnackType({type: enums.snackBar.success, message: res.data.message})
             })
             .catch(err => {
-                updateSnackType({type: "error", message: err.response.data.message})
+                updateSnackType({type: enums.snackBar.error, message: err.response.data.message})
             });
     }
     return (
