@@ -24,12 +24,10 @@ const UserLogin = () => {
         event.preventDefault();
         userAuthLoginService(userDetails)
             .then(res => {
-                console.log(res);
-                updateSnackType({type: "success", message: "Successfully logged in."})
+                updateSnackType({type: "success", message: res.data.message})
             })
             .catch(err => {
-                console.log(err)
-                updateSnackType({type: "error", message: "Some error came up."})
+                updateSnackType({type: "error", message: err.response.data.message})
             });
     }
 
