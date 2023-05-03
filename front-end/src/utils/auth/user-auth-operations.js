@@ -3,11 +3,11 @@ import {localCacheKeys} from "../local-cache/local-cache-keys";
 import {store} from "../../redux/store";
 import {unsetAuthState} from "../../redux/user-auth-slice";
 
-export const isUserLoggedIn = !!getLocalCache(localCacheKeys.token);
+export const isUserLoggedIn = () => !!getLocalCache(localCacheKeys.token);
 
 export const logoutUser = () => {
     clearLocalCache();
     store.dispatch(unsetAuthState());
 }
 
-export const userId = isUserLoggedIn ? "id" : null;
+export const userId = () => isUserLoggedIn() ? "id" : null;

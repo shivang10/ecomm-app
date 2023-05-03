@@ -13,7 +13,7 @@ const Navbar = () => {
                     <img className="navbar__logo" src={MyDMYStoreLogo} alt="myDMYStore"/> </Link>
             </div>
             <div>Search</div>
-            <div className="btn-22px-black"><RiShoppingCartLine/></div>
+            <div className="btn-22px-black flex-hc-vc"><RiShoppingCartLine/></div>
             <div className="navbar-account">
                 <Link className="btn-22px-black flex-hc-vc" to={userLoginLink}>
                     <FaUser className="icon-right-4px"/> Account</Link>

@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Navigate, useNavigate} from "react-router-dom";
 
 import {Link} from "react-router-dom";
 import {userRegisterLink} from "../routes/routesLink";
@@ -10,10 +11,10 @@ import {enums} from "../utils/enums/enums";
 
 const UserLogin = () => {
 
+    const navigate = useNavigate();
     const [userDetails, updateUserDetails] = useState({
         "email": "", "password": ""
     });
-
     const [snackType, updateSnackType] = useState({type: "", message: ""});
 
     const handleChange = (event) => {
@@ -27,7 +28,10 @@ const UserLogin = () => {
         userAuthLoginService(userDetails)
             .then(res => {
                 setLocalCache(enums.user.token, res.data.data.token);
-                updateSnackType({type: enums.snackBar.success, message: res.data.message})
+                updateSnackType({type: enums.snackBar.success, message: res.data.message});
+                setTimeout(() => {
+                    navigate("/");
+                }, 2000);
             })
             .catch(err => {
                 updateSnackType({type: enums.snackBar.error, message: err.response.data.message})
