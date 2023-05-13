@@ -12,7 +12,7 @@ const {
 } = require("../dummy-data/user-review-dummy-data");
 
 
-describe('user schema ', () => {
+describe('user reviews schema ', () => {
 
     it('should successfully create review', async () => {
         const data = {
