@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
-const Variation = new mongoose.Schema({
-    productId: {type: String, required: true},
+const ProductVariation = new mongoose.Schema({
     property: {type: String, required: true},
     price: {type: Number, required: true, min: 1},
     quantity: {type: Number, required: true, min: 0}
 })
 
-const model = mongoose.model("Variation", Variation);
+const model = mongoose.model("ProductVariation", ProductVariation);
 module.exports = model;
