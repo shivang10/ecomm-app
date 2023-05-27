@@ -19,7 +19,11 @@ router.post("/", async (req, res) => {
         const isSellerUserValid = await Seller.findOne({email}, {username: 1, password: 1, email: 1});
         const isPasswordCorrect = await bcrypt.compare(password, isSellerUserValid["password"]);
         if (isPasswordCorrect) {
-            const token = jwt.sign({id: isSellerUserValid._id, username: isSellerUserValid.username}, JWT_SECRET, {
+            const token = jwt.sign({
+                id: isSellerUserValid._id,
+                username: isSellerUserValid.username,
+                email: email
+            }, JWT_SECRET, {
                 expiresIn: "7d"
             });
             return res.status(200).send(api_response({token}, "Successfully logged in"));
