@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const SingleItemOrdered = new mongoose.Schema({
-    price: {type: Number, required: true},
+    price: {type: Number, required: true, min: 1},
     quantity: {type: Number, required: true, min: 1},
-    totalPrice: {type: Number, required: true},
+    totalPrice: {type: Number, required: true, min: 1},
     productId: {type: String, required: true},
     productDiscount: {type: Number, required: false, min: 0}
 });
