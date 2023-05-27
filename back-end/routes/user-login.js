@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const api_response = require("../utils/api-response");
 dotenv.config();
 
-const JWT_SECRET = process.env.JWTSECRET;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post("/", async (req, res) => {
     const {email, password} = req.body;
