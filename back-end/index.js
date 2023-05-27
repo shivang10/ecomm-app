@@ -12,4 +12,10 @@ app.use("/user-register", userRegister);
 const userLogin = require("./routes/user-login");
 app.use("/user-login", userLogin);
 
+const sellerRegister = require("./routes/seller-register");
+app.use("/seller-register", sellerRegister);
+
+const sellerLogin = require("./routes/seller-login");
+app.use("/seller-login", sellerLogin);
+
 module.exports = app;
