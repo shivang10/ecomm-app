@@ -18,4 +18,10 @@ app.use("/seller-register", sellerRegister);
 const sellerLogin = require("./routes/seller-login");
 app.use("/seller-login", sellerLogin);
 
+const addProduct = require("./routes/add-new-product");
+app.use("/add-product", addProduct);
+
+const addProductCategory = require("./routes/add-product-category");
+app.use("/add-product-category", addProductCategory);
+
 module.exports = app;
