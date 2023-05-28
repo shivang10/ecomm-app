@@ -4,7 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const api_response = require("../utils/api-response");
+const apiResponse = require("../utils/api-response");
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -12,7 +12,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.post("/", async (req, res) => {
     const {email, password} = req.body;
     if (!email || !password) {
-        return res.status(400).send(api_response(null, "Email and password both are required."));
+        return res.status(400).send(apiResponse(null, "Email and password both are required."));
     }
 
     try {
@@ -22,12 +22,12 @@ router.post("/", async (req, res) => {
             const token = jwt.sign({id: isUserValid._id, username: isUserValid.username, email: email}, JWT_SECRET, {
                 expiresIn: "7d"
             });
-            return res.status(200).send(api_response({token}, "Successfully logged in"));
+            return res.status(200).send(apiResponse({token}, "Successfully logged in"));
         } else {
-            return res.status(400).send(api_response(null, "Wrong email or password. Try Again"));
+            return res.status(400).send(apiResponse(null, "Wrong email or password. Try Again"));
         }
     } catch (err) {
-        return res.status(400).send(api_response(null, "Wrong email or password. Try Again"));
+        return res.status(400).send(apiResponse(null, "Wrong email or password. Try Again"));
     }
 });
 
