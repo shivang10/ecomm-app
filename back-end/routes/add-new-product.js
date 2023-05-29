@@ -11,6 +11,10 @@ router.post("/", validateSellerToken, async (req, res) => {
 
     const {name, sellerId, tags, variation, description} = req.body;
 
+    if (!name || !sellerId || !tags || !variation || !description) {
+        return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description are required."));
+    }
+
     try {
 
         const isSellerValid = await SellerSchema.findById({_id: sellerId}, {email: 1});
