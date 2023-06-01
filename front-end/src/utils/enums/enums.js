@@ -4,5 +4,8 @@ export const enums = {
     },
     user: {
         token: "token"
+    },
+    seller: {
+        token: "token"
     }
 };
