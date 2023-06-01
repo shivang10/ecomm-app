@@ -39,7 +39,7 @@ const SellerLogin = () => {
     }
 
     return (<div className="flex-hc-vc">
-        <form className="userAuth-form">
+        <form className="auth-form">
             <div className="text-36px-black-600 flex-hc-vc">Login</div>
             <hr className="divider-horizontal"/>
             <label className="text-24px-black-500" htmlFor="email">Email</label>

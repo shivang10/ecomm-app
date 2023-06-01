@@ -32,7 +32,7 @@ const UserRegister = () => {
     }
     return (
         <div className="flex-hc-vc">
-            <form className="userAuth-form">
+            <form className="auth-form">
                 <div className="text-36px-black-600 flex-hc-vc">Register</div>
                 <hr className="divider-horizontal"/>
 
