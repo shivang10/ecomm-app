@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 import {Link} from "react-router-dom";
-import {sellerLoginLink} from "../routes/routesLink";
+import {sellerLoginLink, userLoginLink} from "../routes/routesLink";
 import {sellerAuthRegisterService} from "./services";
 import Snackbar from "../components/snackbar/snackbar";
 import {enums} from "../utils/enums/enums";
@@ -57,6 +57,9 @@ const UserRegister = () => {
                     Already a seller? <Link className="btn-20px-black" to={sellerLoginLink}>Login</Link>
                 </div>
                 <Snackbar type={snackType.type} message={snackType.message}/>
+                <div className="text-20px-black-500 flex-hc-vc">
+                    Want to buy? <Link className="btn-20px-black" to={userLoginLink}>Login as User</Link>
+                </div>
             </form>
         </div>)
 }

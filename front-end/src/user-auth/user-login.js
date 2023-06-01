@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {Link} from "react-router-dom";
-import {userRegisterLink} from "../routes/routesLink";
+import {sellerLoginLink, userRegisterLink} from "../routes/routesLink";
 import {userAuthLoginService} from "./services";
 import Snackbar from "../components/snackbar/snackbar";
 import {BsFillArrowRightCircleFill} from "react-icons/bs";
@@ -56,6 +56,9 @@ const UserLogin = () => {
                 Don't have an account?{" "}<Link className="btn-20px-black" to={userRegisterLink}>Register</Link>
             </div>
             <Snackbar type={snackType.type} message={snackType.message}/>
+            <div className="text-20px-black-500 flex-hc-vc">
+                Want to sell? <Link className="btn-20px-black" to={sellerLoginLink}>Login as Seller</Link>
+            </div>
         </form>
     </div>);
 };
