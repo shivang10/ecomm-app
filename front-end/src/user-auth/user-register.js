@@ -36,14 +36,14 @@ const UserRegister = () => {
                 <div className="text-36px-black-600 flex-hc-vc">Register</div>
                 <hr className="divider-horizontal"/>
 
-                <label className="text-24px-black-500" htmlFor="username">Email</label>
+                <label className="text-24px-black-500" htmlFor="email">Email</label>
                 <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email"/>
 
                 <label className="text-24px-black-500" htmlFor="username">Username</label>
                 <input value={userDetails.username} onChange={handleChange} type="text" placeholder="Username"
                        name="username"/>
 
-                <label className="text-24px-black-500" htmlFor="username">Phone Number</label>
+                <label className="text-24px-black-500" htmlFor="phoneNumber">Phone Number</label>
                 <input value={userDetails.phoneNumber} onChange={handleChange} type="text" placeholder="Phone Number"
                        name="phoneNumber"/>
 

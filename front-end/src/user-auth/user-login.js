@@ -42,7 +42,7 @@ const UserLogin = () => {
         <form className="auth-form">
             <div className="text-36px-black-600 flex-hc-vc">Login</div>
             <hr className="divider-horizontal"/>
-            <label className="text-24px-black-500" htmlFor="username">Email</label>
+            <label className="text-24px-black-500" htmlFor="email">Email</label>
             <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email"/>
 
             <label className="text-24px-black-500" htmlFor="password">Password</label>
