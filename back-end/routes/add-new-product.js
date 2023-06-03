@@ -37,7 +37,7 @@ router.post("/", validateSellerToken, async (req, res) => {
 
         return res.status(200).send(apiResponse(response, "Product is successfully added"));
     } catch (error) {
-        return res.status(400).send(apiResponse(error, "Unable to add product"));
+        return res.status(500).send(apiResponse(error, "Unable to add product"));
     }
 
 });

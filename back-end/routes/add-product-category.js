@@ -16,7 +16,7 @@ router.post("/", validateSellerToken, async (req, res) => {
         const response = await CategorySchema.create(productCategory);
         return res.status(200).send(apiResponse(response, "Category is successfully created."))
     } catch (err) {
-        return res.status(400).send(apiResponse(err, "Some error came up."))
+        return res.status(500).send(apiResponse(err, "Some error came up."))
     }
 });
 

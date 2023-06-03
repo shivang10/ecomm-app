@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
             return res.status(400).send(apiResponse(null, "Wrong email or password. Try Again"));
         }
     } catch (err) {
-        return res.status(400).send(apiResponse(null, "Wrong email or password. Try Again"));
+        return res.status(500).send(apiResponse(null, "Wrong email or password. Try Again"));
     }
 });
 

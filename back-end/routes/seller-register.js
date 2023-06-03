@@ -24,7 +24,7 @@ router.route("/").post(async (req, res) => {
         });
         return res.status(200).send(apiResponse(response, "Account is successfully created."))
     } catch (err) {
-        return res.status(400).send(apiResponse(err, "Some error came up."))
+        return res.status(500).send(apiResponse(err, "Some error came up."))
     }
 
 });
