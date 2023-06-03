@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
             const token = jwt.sign({
                 id: isSellerUserValid._id,
                 username: isSellerUserValid.username,
-                email: email
+                email: email,
+                type: "seller"
             }, JWT_SECRET, {
                 expiresIn: "7d"
             });
