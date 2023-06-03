@@ -1,4 +1,4 @@
-.navbar {
+.userNavbar {
 
   &__logo {
     width: 7rem;
@@ -34,6 +34,34 @@
 
   &-account {
     grid-column: 5/6;
+    width: 100%;
+  }
+}
+
+.sellerNavbar {
+  &__logo {
+    width: 7rem;
+    height: auto;
+
+    margin-right: 1rem;
+  }
+
+  &__top {
+    padding: 1rem 2rem;
+
+    background-color: $color-white;
+
+    display: grid;
+    grid-template-columns: auto 6rem;
+    grid-template-rows: 2rem;
+    column-gap: 6px;
+    align-items: center;
+
+    border-bottom: 1px solid $color-primary-grey-main;
+  }
+
+  &-account {
+    grid-column: 2/3;
     width: 100%;
   }
 }
