@@ -1,14 +1,14 @@
-import {Link} from "react-router-dom";
-import {homepageLink, userLoginLink} from "../../routes/routesLink";
-import {RiShoppingCartLine} from "react-icons/ri";
-import {FaUser} from "react-icons/fa";
-import {BiCategory} from "react-icons/bi";
-import MyDMYStoreLogo from "../../assets/my-DMY-store.png";
 import UserNavbar from "./user-navbar";
 import SellerNavbar from "./seller-navbar";
+import jwt from "jwt-decode";
+import {getLocalCache} from "../../utils/local-cache/local-cache";
+import {enums} from "../../utils/enums/enums";
 
 const Navbar = () => {
-    const navbarType = "user";
+    const token = getLocalCache(enums.user.token);
+
+    const decoded = jwt(token);
+    const navbarType = decoded["type"];
 
     if (navbarType === "user") {
         return <UserNavbar/>
