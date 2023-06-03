@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
-import {homepageLink, userLoginLink} from "../../routes/routesLink";
-import {FaUser} from "react-icons/fa";
+import {homepageLink} from "../../routes/routesLink";
 import MyDMYStoreLogo from "../../assets/my-DMY-store.png";
+import {sellerAccountMenuItems} from "./seller-account-menu-items";
+import Dropdown from "../dropdown/dropdown";
 
 const SellerNavbar = () => {
     return (<div className="sellerNavbar">
@@ -11,8 +12,7 @@ const SellerNavbar = () => {
                     <img className="userNavbar__logo" src={MyDMYStoreLogo} alt="myDMYStore"/> </Link>
             </div>
             <div className="sellerNavbar-account">
-                <Link className="btn-22px-black flex-hc-vc" to={userLoginLink}>
-                    <FaUser className="icon-right-4px"/> Account</Link>
+                <Dropdown dropdownOptions={sellerAccountMenuItems}/>
             </div>
         </div>
     </div>);

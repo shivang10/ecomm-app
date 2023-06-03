@@ -31,6 +31,7 @@ const UserLogin = () => {
                 updateSnackType({type: enums.snackBar.success, message: res.data.message});
                 setTimeout(() => {
                     navigate("/");
+                    window.location.reload();
                 }, 2000);
             })
             .catch(err => {

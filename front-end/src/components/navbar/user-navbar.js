@@ -1,9 +1,10 @@
 import {Link} from "react-router-dom";
-import {homepageLink, userLoginLink} from "../../routes/routesLink";
+import {homepageLink} from "../../routes/routesLink";
 import {RiShoppingCartLine} from "react-icons/ri";
-import {FaUser} from "react-icons/fa";
 import {BiCategory} from "react-icons/bi";
 import MyDMYStoreLogo from "../../assets/my-DMY-store.png";
+import Dropdown from "../dropdown/dropdown";
+import {userAccountMenuItems} from "./user-account-menu-items";
 
 const UserNavbar = () => {
     return (<div className="userNavbar">
@@ -15,8 +16,7 @@ const UserNavbar = () => {
             <div>Search</div>
             <div className="btn-22px-black flex-hc-vc"><RiShoppingCartLine/></div>
             <div className="userNavbar-account">
-                <Link className="btn-22px-black flex-hc-vc" to={userLoginLink}>
-                    <FaUser className="icon-right-4px"/> Account</Link>
+                <Dropdown dropdownOptions={userAccountMenuItems}/>
             </div>
         </div>
         <div className="userNavbar__bottom">

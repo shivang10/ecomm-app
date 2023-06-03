@@ -8,6 +8,7 @@ export const isUserLoggedIn = () => !!getLocalCache(localCacheKeys.token);
 export const logoutUser = () => {
     clearLocalCache();
     store.dispatch(unsetAuthState());
+    window.location.reload();
 }
 
 export const userId = () => isUserLoggedIn() ? "id" : null;
