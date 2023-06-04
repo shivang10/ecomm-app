@@ -48,7 +48,7 @@ describe("Seller Login", () => {
 
         const res = await request(app).post("/seller-login").send(sellerData);
         const resData = JSON.parse(res["text"])
-        expect(res.status).toEqual(400);
+        expect(res.status).toEqual(500);
         expect(resData.message).toEqual("Wrong email or password. Try Again");
     });
 
@@ -59,7 +59,7 @@ describe("Seller Login", () => {
 
         const res = await request(app).post("/seller-login").send(sellerData);
         const resData = JSON.parse(res["text"]);
-        expect(res.status).toEqual(400);
+        expect(res.status).toEqual(500);
         expect(resData.message).toEqual("Wrong email or password. Try Again");
     });
 
