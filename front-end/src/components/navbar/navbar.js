@@ -13,9 +13,9 @@ const Navbar = () => {
         navbarType = decoded["type"];
     }
 
-    if (navbarType === enums.navbar.user) {
+    if (navbarType === enums.user.account) {
         return <UserNavbar/>
-    } else if (navbarType === enums.navbar.seller) {
+    } else if (navbarType === enums.seller.account) {
         return <SellerNavbar/>;
     } else {
         return <CommonNavbar/>;
