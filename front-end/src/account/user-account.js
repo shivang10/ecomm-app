@@ -1,14 +1,14 @@
-import {profileLink, addressesLink, paymentMethodsLink, ordersPlacedLink} from "../routes/routesLink";
+import {userProfileLink, userAddressLink, paymentMethodsLink, ordersPlacedLink} from "../routes/routesLink";
 import {CgProfile} from "react-icons/cg";
 import {FaRegAddressCard} from "react-icons/fa";
 import {MdPayment} from "react-icons/md";
 import {BsFillBoxSeamFill} from "react-icons/bs";
 
 const userAccount = [{
-    name: "Profile", url: profileLink, type: "url", icon: <CgProfile/>, description: "Your profile"
+    name: "Profile", url: userProfileLink, type: "url", icon: <CgProfile/>, description: "Your profile"
 }, {
     name: "Addresses",
-    url: addressesLink,
+    url: userAddressLink,
     type: "url",
     icon: <FaRegAddressCard/>,
     description: "View and edit your addresses"

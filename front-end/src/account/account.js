@@ -8,13 +8,19 @@ import {Link} from "react-router-dom";
 const Account = () => {
     const token = getLocalCache(enums.user.token);
     let accountType = enums.navbar.common;
+    let profileId;
     if (token) {
         const decoded = jwt(token);
         accountType = decoded["type"];
+        profileId = decoded["id"];
+    }
+
+    const getUrl = (accountUrl) => {
+        return accountUrl.replace("/:id", `/${profileId}`)
     }
 
     const generateAccountOptionCards = (accountOpt) => accountOpt.map((accountOption) => {
-        return <Link className="accountBoard-card" key={accountOption["name"]} to={accountOption["url"]}>
+        return <Link className="accountBoard-card" key={accountOption["name"]} to={getUrl(accountOption["url"])}>
             <div className="accountBoard-card__heading text-36px-black-600">{accountOption["name"]}</div>
             <div className="accountBoard-card__logo">{accountOption["icon"]}</div>
             <div className="accountBoard-card__description text-24px-black-500">

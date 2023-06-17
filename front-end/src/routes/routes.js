@@ -1,10 +1,19 @@
 import {lazy, Suspense} from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {
-    homepageLink, userLoginLink, userRegisterLink, sellerLoginLink, sellerRegisterLink, accountLink
+    homepageLink,
+    userLoginLink,
+    userRegisterLink,
+    sellerLoginLink,
+    sellerRegisterLink,
+    accountLink,
+    sellerProfileLink,
+    sellerAddressLink
 } from "./routesLink";
 import PublicRoute from "./publicRoute";
 import PrivateRoute from "./privateRoute";
+import SellerInfo from "../seller-profile/seller-info";
+import SellerAddress from "../seller-profile/seller-address";
 
 const Homepage = lazy(() => import("../homepage/homepage"));
 const UserRegister = lazy(() => import("../user-auth/user-register"));
@@ -20,6 +29,8 @@ const PageRoutes = () => {
                 <Route path={homepageLink} element={<PrivateRoute/>}>
                     <Route exact path={homepageLink} element={<Homepage/>}/>
                     <Route exact path={accountLink} element={<MyAccount/>}/>
+                    <Route exact path={sellerProfileLink} element={<SellerInfo/>}/>
+                    <Route exact path={sellerAddressLink} element={<SellerAddress/>}/>
                 </Route>
                 <Route path={homepageLink} element={<PublicRoute/>}>
                     <Route exact path={homepageLink} element={<Homepage/>}/>
