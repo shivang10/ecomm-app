@@ -30,4 +30,7 @@ app.use("/seller/info/", getSellerInfo);
 const getSellerAddress = require("./routes/seller-address");
 app.use("/seller/address/", getSellerAddress);
 
+const addStore = require("./routes/add-store");
+app.use("/add-store", addStore);
+
 module.exports = app;
