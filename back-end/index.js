@@ -24,4 +24,7 @@ app.use("/add-product", addProduct);
 const addProductCategory = require("./routes/add-product-category");
 app.use("/add-product-category", addProductCategory);
 
+const getSellerInfo = require("./routes/seller-info");
+app.use("/seller/info/", getSellerInfo);
+
 module.exports = app;
