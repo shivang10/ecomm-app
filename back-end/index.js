@@ -33,4 +33,10 @@ app.use("/seller/address/", getSellerAddress);
 const addStore = require("./routes/add-store");
 app.use("/add-store", addStore);
 
+const addSellerAddress = require("./routes/add-seller-address");
+app.use("/add-seller-address", addSellerAddress);
+
+const addUserAddress = require("./routes/add-user-address");
+app.use("/add-user-address", addUserAddress);
+
 module.exports = app;
