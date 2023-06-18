@@ -5,14 +5,15 @@ const validateSellerToken = require("../middlewares/validate-seller-token");
 const SellerSchema = require("../models/seller");
 const VariationSchema = require("../models/product-variation");
 const ProductSchema = require("../models/products");
+const StoreSchema = require("../models/store");
 
 
 router.post("/", validateSellerToken, async (req, res) => {
 
-    const {name, sellerId, tags, variation, description} = req.body;
+    const {name, sellerId, tags, variation, description, storeId} = req.body;
 
-    if (!name || !sellerId || !tags || !variation || !description) {
-        return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description are required."));
+    if (!name || !sellerId || !tags || !variation || !description || !storeId) {
+        return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description, storeId are required."));
     }
 
     try {
@@ -34,6 +35,9 @@ router.post("/", validateSellerToken, async (req, res) => {
         }
 
         const response = await ProductSchema.create(product);
+        const productId = (response._id).valueOf()
+
+        await StoreSchema.updateOne({_id: storeId}, {$push: {products: productId}})
 
         return res.status(200).send(apiResponse(response, "Product is successfully added"));
     } catch (error) {
