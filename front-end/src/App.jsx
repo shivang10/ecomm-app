@@ -1,16 +1,19 @@
-import "./App.scss";
-import Navbar from "./components/navbar/navbar";
-import PageRoutes from "./routes/routes";
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Provider} from "react-redux";
-import {store} from "./redux/store";
+import React from "react";
 
-const App = () => {
+import "./App.scss";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import Navbar from "./components/navbar/navbar";
+import { store } from "./redux/store";
+import PageRoutes from "./routes/routes";
+
+function App() {
     return (
         <Provider store={store}>
             <Router>
-                <Navbar/>
-                <PageRoutes/>
+                <Navbar />
+                <PageRoutes />
             </Router>
         </Provider>
     );

@@ -1,3 +1,5 @@
+import React from "react";
+
 import {FaUser} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
@@ -9,12 +11,12 @@ const Dropdown = ({dropdownOptions}) => {
         if (dropdownOption["type"] === "url") {
             return <div key={dropdownOption["name"]}>
                 <Link to={dropdownOption["url"]}>{dropdownOption["name"]}</Link>
-            </div>
+            </div>;
         } else {
             return <div onClick={() => handleDropDownFunction(dropdownOption["functionDefinition"])}
-                        key={dropdownOption["name"]}>
+                key={dropdownOption["name"]}>
                 {dropdownOption["name"]}
-            </div>
+            </div>;
         }
     });
     
@@ -26,6 +28,6 @@ const Dropdown = ({dropdownOptions}) => {
             </div>
         </div>
     );
-}
+};
 
 export default Dropdown;

@@ -1,5 +1,7 @@
 import React from "react";
+
 import {BsExclamationTriangleFill, BsFillCheckCircleFill, BsFillExclamationCircleFill} from "react-icons/bs";
+
 import {enums} from "../../utils/enums/enums";
 
 const Snackbar = ({type, message = ""}) => {

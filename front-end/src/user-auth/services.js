@@ -1,5 +1,6 @@
 import axios from "axios";
-import {userLoginURL, userRegisterURL} from "../api-links/api-links";
+
+import { userLoginURL, userRegisterURL } from "../api-links/api-links";
 
 export const userAuthLoginService = async (userLoginData) => await axios.post(userLoginURL, userLoginData);
 

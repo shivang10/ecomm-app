@@ -1,3 +1,3 @@
 export const localCacheKeys = {
-    'token': 'token',
-}
+    "token": "token",
+};

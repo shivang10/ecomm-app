@@ -1,10 +1,11 @@
-import {useState} from "react";
+import React, { useState } from "react";
 
-import {Link} from "react-router-dom";
-import {sellerLoginLink, userLoginLink} from "../routes/routesLink";
-import {userAuthRegisterService} from "./services";
+import { Link } from "react-router-dom";
+
+import { userAuthRegisterService } from "./services";
 import Snackbar from "../components/snackbar/snackbar";
-import {enums} from "../utils/enums/enums";
+import { sellerLoginLink, userLoginLink } from "../routes/routesLink";
+import { enums } from "../utils/enums/enums";
 
 const UserRegister = () => {
 
@@ -12,55 +13,56 @@ const UserRegister = () => {
         "email": "", "password": "", "username": "", "phoneNumber": ""
     });
 
-    const [snackType, updateSnackType] = useState({type: "", message: ""});
+    const [snackType, updateSnackType] = useState({ type: "", message: "" });
 
     const handleChange = (event) => {
         updateUserDetails({
             ...userDetails, [event.target.name]: event.target.value
-        })
-    }
+        });
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
         userAuthRegisterService(userDetails)
             .then(res => {
-                updateSnackType({type: enums.snackBar.success, message: res.data.message})
+                updateSnackType({ type: enums.snackBar.success, message: res.data.message });
             })
             .catch(err => {
-                updateSnackType({type: enums.snackBar.error, message: err.response.data.message})
+                updateSnackType({ type: enums.snackBar.error, message: err.response.data.message });
             });
-    }
+    };
     return (
         <div className="flex-hc-vc">
             <form className="auth-form">
                 <div className="text-36px-black-600 flex-hc-vc">Register</div>
-                <hr className="divider-horizontal"/>
+                <hr className="divider-horizontal" />
 
                 <label className="text-24px-black-500" htmlFor="email">Email</label>
-                <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email"/>
+                <input value={userDetails.email} onChange={handleChange} type="text" placeholder="Email" name="email" />
 
                 <label className="text-24px-black-500" htmlFor="username">Username</label>
                 <input value={userDetails.username} onChange={handleChange} type="text" placeholder="Username"
-                       name="username"/>
+                    name="username" />
 
                 <label className="text-24px-black-500" htmlFor="phoneNumber">Phone Number</label>
                 <input value={userDetails.phoneNumber} onChange={handleChange} type="text" placeholder="Phone Number"
-                       name="phoneNumber"/>
+                    name="phoneNumber" />
 
                 <label className="text-24px-black-500" htmlFor="password">Password</label>
                 <input value={userDetails.password} onChange={handleChange} type="password" placeholder="Password"
-                       name="password"/>
+                    name="password" />
 
                 <div className="btn-22px-black flex-hc-vc" onClick={handleSubmit}>Register</div>
                 <div className="text-20px-black-500 flex-hc-vc">
                     Already a user? <Link className="btn-20px-black" to={userLoginLink}>Login</Link>
                 </div>
-                <Snackbar type={snackType.type} message={snackType.message}/>
+                <Snackbar type={snackType.type} message={snackType.message} />
                 <div className="text-20px-black-500 flex-hc-vc">
                     Want to sell? <Link className="btn-20px-black" to={sellerLoginLink}>Login as Seller</Link>
                 </div>
             </form>
-        </div>)
-}
+        </div>
+    );
+};
 
 export default UserRegister;

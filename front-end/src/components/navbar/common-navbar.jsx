@@ -1,5 +1,8 @@
-import {Link} from "react-router-dom";
+import React from "react";
+
 import {FaUser} from "react-icons/fa";
+import {Link} from "react-router-dom";
+
 import MyDMYStoreLogo from "../../assets/my-DMY-store.png";
 import {homepageLink, userLoginLink} from "../../routes/routesLink";
 
@@ -18,6 +21,6 @@ const CommonNavbar = () => {
             </div>
         </div>
     );
-}
+};
 
 export default CommonNavbar;

@@ -1,5 +1,10 @@
-import {lazy, Suspense} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import React from "react";
+import {lazy, Suspense} from "react";
+
+import {Route, Routes} from "react-router-dom";
+
+import PrivateRoute from "./privateRoute";
+import PublicRoute from "./publicRoute";
 import {
     homepageLink,
     userLoginLink,
@@ -10,10 +15,8 @@ import {
     sellerProfileLink,
     sellerAddressLink
 } from "./routesLink";
-import PublicRoute from "./publicRoute";
-import PrivateRoute from "./privateRoute";
-import SellerInfo from "../seller-profile/seller-info";
 import SellerAddress from "../seller-profile/seller-address";
+import SellerInfo from "../seller-profile/seller-info";
 
 const Homepage = lazy(() => import("../homepage/homepage"));
 const UserRegister = lazy(() => import("../user-auth/user-register"));
@@ -41,6 +44,6 @@ const PageRoutes = () => {
                 </Route>
             </Routes>
         </Suspense>
-    )
-}
+    );
+};
 export default PageRoutes;

@@ -1,9 +1,12 @@
-import UserNavbar from "./user-navbar";
-import SellerNavbar from "./seller-navbar";
+import React from "react";
+
 import jwt from "jwt-decode";
-import {getLocalCache} from "../../utils/local-cache/local-cache";
-import {enums} from "../../utils/enums/enums";
+
 import CommonNavbar from "./common-navbar";
+import SellerNavbar from "./seller-navbar";
+import UserNavbar from "./user-navbar";
+import {enums} from "../../utils/enums/enums";
+import {getLocalCache} from "../../utils/local-cache/local-cache";
 
 const Navbar = () => {
     const token = getLocalCache(enums.user.token);
@@ -14,7 +17,7 @@ const Navbar = () => {
     }
 
     if (navbarType === enums.user.account) {
-        return <UserNavbar/>
+        return <UserNavbar/>;
     } else if (navbarType === enums.seller.account) {
         return <SellerNavbar/>;
     } else {
