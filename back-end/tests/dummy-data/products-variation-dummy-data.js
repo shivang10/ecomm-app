@@ -17,5 +17,5 @@ module.exports = {
     variationProperty2,
     variationQuantity2,
     variationPriceWrong,
-    variationQuantityWrong
-}
+    variationQuantityWrong,
+};

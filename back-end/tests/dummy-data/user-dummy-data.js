@@ -5,4 +5,6 @@ const phoneNumber = "79679343";
 const wrongEmail = "abc@def";
 const wrongPassword = "wrong";
 
-module.exports = {username, email, password, phoneNumber, wrongEmail, wrongPassword};
+module.exports = {
+    username, email, password, phoneNumber, wrongEmail, wrongPassword,
+};

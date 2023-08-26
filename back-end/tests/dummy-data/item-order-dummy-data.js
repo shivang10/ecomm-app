@@ -17,5 +17,5 @@ module.exports = {
     itemOrderQuantity,
     itemOrderQuantityWrong,
     itemOrderProductId,
-    itemOrderTotalPriceWrong
-}
+    itemOrderTotalPriceWrong,
+};

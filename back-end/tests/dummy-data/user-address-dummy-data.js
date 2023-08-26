@@ -15,5 +15,5 @@ module.exports = {
     userAddressCity,
     userAddressState,
     userAddressPostalCode,
-    userAddressCountry
-}
+    userAddressCountry,
+};

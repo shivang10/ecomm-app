@@ -17,5 +17,5 @@ module.exports = {
     sellerStoreAddress,
     sellerOrdersReceived,
     sellerWrongEmail,
-    sellerWrongPassword
+    sellerWrongPassword,
 };

@@ -1,4 +1,6 @@
-const dbHandler = require('../db-setup');
+/* eslint-disable no-undef */
+/* eslint-disable no-return-await */
+const dbHandler = require("../db-setup");
 const User = require("../../models/user");
 
 beforeAll(async () => await dbHandler.connect());
@@ -7,75 +9,72 @@ afterEach(async () => await dbHandler.clearDatabase());
 
 afterAll(async () => await dbHandler.closeDatabase());
 
-const {username, email, password, phoneNumber} = require("../dummy-data/user-dummy-data");
+const {
+    username, email, password, phoneNumber,
+} = require("../dummy-data/user-dummy-data");
 
-
-describe('user schema ', () => {
-
-    it('should successfully create user', async () => {
+describe("user schema ", () => {
+    it("should successfully create user", async () => {
         const data = {
-            username, email, password, phoneNumber
-        }
+            username, email, password, phoneNumber,
+        };
         const user1 = await User.create(data);
         expect(user1.username).toEqual(username);
     });
 
-    it('error on missing email', async () => {
+    it("error on missing email", async () => {
         const data = {
-            username, password
-        }
+            username, password,
+        };
 
         try {
             const user1 = await User.create(data);
-            expect(user1.username).toEqual(username)
-
+            expect(user1.username).toEqual(username);
         } catch (error) {
-            expect(error["errors"]["email"]["kind"]).toEqual("required")
-            expect(error["errors"]["email"]["path"]).toEqual("email")
+            expect(error.errors.email.kind).toEqual("required");
+            expect(error.errors.email.path).toEqual("email");
         }
     });
 
-    it('error on missing username', async () => {
+    it("error on missing username", async () => {
         const data = {
-            email, password
-        }
+            email, password,
+        };
 
         try {
             const user1 = await User.create(data);
-            expect(user1.username).toEqual(username)
-
+            expect(user1.username).toEqual(username);
         } catch (error) {
-            expect(error["errors"]["username"]["kind"]).toEqual("required")
-            expect(error["errors"]["username"]["path"]).toEqual("username")
+            expect(error.errors.username.kind).toEqual("required");
+            expect(error.errors.username.path).toEqual("username");
         }
     });
 
-    it('error on missing password', async () => {
+    it("error on missing password", async () => {
         const data = {
-            username, email
-        }
+            username, email,
+        };
 
         try {
             const user1 = await User.create(data);
-            expect(user1.username).toEqual(username)
-
+            expect(user1.username).toEqual(username);
         } catch (error) {
-            expect(error["errors"]["password"]["kind"]).toEqual("required")
-            expect(error["errors"]["password"]["path"]).toEqual("password")
+            expect(error.errors.password.kind).toEqual("required");
+            expect(error.errors.password.path).toEqual("password");
         }
     });
 
-    it('error on missing phone number', async () => {
+    it("error on missing phone number", async () => {
         const data = {
-            username, email, password
-        }
+            username, email, password,
+        };
 
         try {
             const user1 = await User.create(data);
-            expect(user1.username).toEqual(username)
+            expect(user1.username).toEqual(username);
         } catch (error) {
-            expect(error["errors"]["phoneNumber"]["kind"]).toEqual("required")
-            expect(error["errors"]["phoneNumber"]["path"]).toEqual("phoneNumber")
+            expect(error.errors.phoneNumber.kind).toEqual("required");
+            expect(error.errors.phoneNumber.path).toEqual("phoneNumber");
         }
     });
 });

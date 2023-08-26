@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
-const {MongoMemoryServer} = require('mongodb-memory-server');
+/* eslint-disable guard-for-in */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
+const mongoose = require("mongoose");
+const { MongoMemoryServer } = require("mongodb-memory-server");
 
-let mongod = undefined;
-
+let mongod;
 
 module.exports.connect = async () => {
     mongod = await MongoMemoryServer.create();
@@ -10,7 +12,6 @@ module.exports.connect = async () => {
 
     await mongoose.connect(uri, {});
 };
-
 
 module.exports.closeDatabase = async () => {
     if (mongod) {
@@ -20,10 +21,9 @@ module.exports.closeDatabase = async () => {
     }
 };
 
-
 module.exports.clearDatabase = async () => {
     if (mongod) {
-        const collections = mongoose.connection.collections;
+        const { collections } = mongoose.connection;
 
         for (const key in collections) {
             const collection = collections[key];

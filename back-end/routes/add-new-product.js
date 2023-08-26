@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 const apiResponse = require("../utils/api-response");
 const validateSellerToken = require("../middlewares/validate-seller-token");
@@ -7,43 +8,40 @@ const VariationSchema = require("../models/product-variation");
 const ProductSchema = require("../models/products");
 const StoreSchema = require("../models/store");
 
-
 router.post("/", validateSellerToken, async (req, res) => {
-
-    const {name, sellerId, tags, variation, description, storeId} = req.body;
+    const {
+        name, sellerId, tags, variation, description, storeId,
+    } = req.body;
 
     if (!name || !sellerId || !tags || !variation || !description || !storeId) {
         return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description, storeId are required."));
     }
 
     try {
-
-        const isSellerValid = await SellerSchema.findById({_id: sellerId}, {email: 1});
+        const isSellerValid = await SellerSchema.findById({ _id: sellerId }, { email: 1 });
 
         if (!isSellerValid) {
             return res.status(400).send(apiResponse(null, "No such seller exists"));
         }
 
-        const productVariations = variation.map((pv) => {
-            return new VariationSchema({
-                property: pv["property"], price: pv["price"], quantity: pv["quantity"]
-            });
-        });
+        const productVariations = variation.map((pv) => new VariationSchema({
+            property: pv.property, price: pv.price, quantity: pv.quantity,
+        }));
 
         const product = {
-            name: name, sellerId: sellerId, tags: tags, variation: productVariations, description: description
-        }
+            name, sellerId, tags, variation: productVariations, description,
+        };
 
         const response = await ProductSchema.create(product);
-        const productId = (response._id).valueOf()
+        // eslint-disable-next-line no-underscore-dangle
+        const productId = (response._id).valueOf();
 
-        await StoreSchema.updateOne({_id: storeId}, {$push: {products: productId}})
+        await StoreSchema.updateOne({ _id: storeId }, { $push: { products: productId } });
 
         return res.status(200).send(apiResponse(response, "Product is successfully added"));
     } catch (error) {
         return res.status(500).send(apiResponse(error, "Unable to add product"));
     }
-
 });
 
 module.exports = router;

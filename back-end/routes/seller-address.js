@@ -1,4 +1,5 @@
 const express = require("express");
+
 const router = express.Router();
 const apiResponse = require("../utils/api-response");
 const validateSellerToken = require("../middlewares/validate-seller-token");
@@ -11,8 +12,8 @@ router.get("/:id", validateSellerToken, async (req, res) => {
         return res.status(400).send(apiResponse(null, "SellerId is required"));
     }
     try {
-        const sellerDetails = await SellerSchema.findById({_id: sellerId}, {
-            password: 0, ordersReceived: 0, phoneNumber: 0
+        const sellerDetails = await SellerSchema.findById({ _id: sellerId }, {
+            password: 0, ordersReceived: 0, phoneNumber: 0,
         });
 
         if (!sellerDetails) {

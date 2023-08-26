@@ -7,5 +7,5 @@ const comment = "comment";
 const commentEmpty = null;
 
 module.exports = {
-    userId, orderedProductId, ratingValue, ratingValueWrongDataType, ratingValueWrongValue, comment, commentEmpty
+    userId, orderedProductId, ratingValue, ratingValueWrongDataType, ratingValueWrongValue, comment, commentEmpty,
 };

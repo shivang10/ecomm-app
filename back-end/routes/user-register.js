@@ -1,12 +1,15 @@
 const router = require("express").Router();
-const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const emailValidator = require("email-validator");
+const User = require("../models/user");
+
 const saltRounds = 10;
 const apiResponse = require("../utils/api-response");
 
 router.route("/").post(async (req, res) => {
-    const {username, password: plainTextPassword, email, phoneNumber} = req.body;
+    const {
+        username, password: plainTextPassword, email, phoneNumber,
+    } = req.body;
 
     if (!email || !plainTextPassword || !username || !phoneNumber) {
         return res.status(400).send(apiResponse(null, "Email,password, username and phoneNumber, all fields are required."));
@@ -20,13 +23,12 @@ router.route("/").post(async (req, res) => {
 
     try {
         const response = await User.create({
-            username, password, email, phoneNumber
+            username, password, email, phoneNumber,
         });
-        return res.status(200).send(apiResponse(response, "Account is successfully created."))
+        return res.status(200).send(apiResponse(response, "Account is successfully created."));
     } catch (err) {
-        return res.status(500).send(apiResponse(err, "Some error came up."))
+        return res.status(500).send(apiResponse(err, "Some error came up."));
     }
-
 });
 
 module.exports = router;
