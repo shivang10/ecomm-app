@@ -13,8 +13,8 @@ router.post("/", validateSellerToken, async (req, res) => {
         name, sellerId, tags, variation, description, storeId,
     } = req.body;
 
-    if (!name || !sellerId || !tags || !variation || !description || !storeId) {
-        return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description, storeId are required."));
+    if (!name || !sellerId || !tags || !variation || !description) {
+        return res.status(400).send(apiResponse(null, "Every field: name, sellerId, tags, variation, description are required."));
     }
 
     try {

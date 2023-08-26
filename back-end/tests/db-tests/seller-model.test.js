@@ -15,7 +15,7 @@ const {
     sellerPassword,
     sellerPhoneNumber,
     sellerOrdersReceived,
-    sellerStoreAddress,
+    sellerStoreIds,
     sellerHomeAddress,
 } = require("../dummy-data/seller-dummy-data");
 
@@ -27,13 +27,12 @@ describe("seller schema", () => {
             password: sellerPassword,
             phoneNumber: sellerPhoneNumber,
             homeAddress: sellerHomeAddress,
-            storeAddress: sellerStoreAddress,
+            storeIds: sellerStoreIds,
             ordersReceived: sellerOrdersReceived,
         };
         const seller = await Seller.create(data);
         expect(seller.username).toEqual(sellerUsername);
         expect(seller.email).toEqual(sellerEmail);
-        expect(seller.storeAddress).toEqual(sellerStoreAddress);
     });
 
     it("should successfully create seller without home address, store address, orders received", async () => {
