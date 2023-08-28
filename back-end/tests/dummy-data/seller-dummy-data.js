@@ -3,12 +3,13 @@ const sellerEmail = "email@email.com";
 const sellerPassword = "sellerPassword";
 const sellerPhoneNumber = "sellerPhoneNumber";
 const sellerHomeAddress = [{
-    houseNo: "123",
+    unitNumber: "123",
     streetNo: "1",
     locality: "local",
     city: "New Delhi",
     state: "New Delhi",
     pinCode: "79841",
+    country: "India",
 }];
 const sellerStoreIds = ["sellerStoreIds1"];
 const sellerOrdersReceived = ["sellerOrdersReceived"];

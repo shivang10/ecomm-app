@@ -1,7 +1,7 @@
 /* eslint-disable no-return-await */
 /* eslint-disable no-undef */
 const dbHandler = require("../db-setup");
-const UserAddress = require("../../models/user-address");
+const UserAddress = require("../../models/address");
 
 beforeAll(async () => await dbHandler.connect());
 
@@ -12,58 +12,44 @@ afterAll(async () => await dbHandler.closeDatabase());
 const {
     userAddressUnitNumber: unitNumber,
     userAddressStreetNumber: streetNumber,
-    userAddressAddressLine1: addressLine1,
-    userAddressAddressLine2: addressLine2,
+    userAddressLocality: locality,
+    userAddressLandmark: landmark,
     userAddressCity: city,
     userAddressState: state,
-    userAddressPostalCode: postalCode,
+    userAddressPinCode: pinCode,
     userAddressCountry: country,
 } = require("../dummy-data/user-address-dummy-data");
 
 describe("user schema ", () => {
     it("should successfully create user address", async () => {
         const data = {
-            unitNumber, streetNumber, addressLine1, addressLine2, city, state, postalCode, country,
+            unitNumber, streetNumber, locality, landmark, city, state, pinCode, country,
         };
-        const userAddress1 = await UserAddress.create(data);
-        expect(userAddress1.unitNumber).toEqual(unitNumber);
+        const userAddress = await UserAddress.create(data);
+        expect(userAddress.unitNumber).toEqual(unitNumber);
     });
 
     it("error on missing unit number", async () => {
         const data = {
-            streetNumber, addressLine1, addressLine2, city, state, postalCode, country,
+            streetNumber, locality, landmark, city, state, pinCode, country,
         };
 
         try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.unitNumber).toEqual(unitNumber);
+            const userAddress = await UserAddress.create(data);
+            expect(userAddress.unitNumber).toEqual(unitNumber);
         } catch (error) {
             expect(error.errors.unitNumber.kind).toEqual("required");
             expect(error.errors.unitNumber.path).toEqual("unitNumber");
         }
     });
 
-    it("error on missing address line 1", async () => {
-        const data = {
-            unitNumber, streetNumber, addressLine2, city, state, postalCode, country,
-        };
-
-        try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.addressLine1).toEqual(addressLine1);
-        } catch (error) {
-            expect(error.errors.addressLine1.kind).toEqual("required");
-            expect(error.errors.addressLine1.path).toEqual("addressLine1");
-        }
-    });
-
     it("error on missing city", async () => {
         const data = {
-            unitNumber, streetNumber, addressLine1, addressLine2, state, postalCode, country,
+            unitNumber, streetNumber, state, pinCode, country,
         };
         try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.city).toEqual(city);
+            const userAddress = await UserAddress.create(data);
+            expect(userAddress.city).toEqual(city);
         } catch (error) {
             expect(error.errors.city.kind).toEqual("required");
             expect(error.errors.city.path).toEqual("city");
@@ -72,37 +58,37 @@ describe("user schema ", () => {
 
     it("error on missing state", async () => {
         const data = {
-            unitNumber, streetNumber, addressLine1, addressLine2, city, postalCode, country,
+            unitNumber, streetNumber, locality, landmark, city, pinCode, country,
         };
         try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.state).toEqual(state);
+            const userAddress = await UserAddress.create(data);
+            expect(userAddress.state).toEqual(state);
         } catch (error) {
             expect(error.errors.state.kind).toEqual("required");
             expect(error.errors.state.path).toEqual("state");
         }
     });
 
-    it("error on missing postal code", async () => {
+    it("error on missing pinCode", async () => {
         const data = {
-            unitNumber, streetNumber, addressLine1, addressLine2, city, state, country,
+            unitNumber, streetNumber, locality, landmark, city, state, country,
         };
         try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.postalCode).toEqual(postalCode);
+            const userAddress = await UserAddress.create(data);
+            expect(userAddress.pinCode).toEqual(pinCode);
         } catch (error) {
-            expect(error.errors.postalCode.kind).toEqual("required");
-            expect(error.errors.postalCode.path).toEqual("postalCode");
+            expect(error.errors.pinCode.kind).toEqual("required");
+            expect(error.errors.pinCode.path).toEqual("pinCode");
         }
     });
 
     it("error on missing country", async () => {
         const data = {
-            unitNumber, streetNumber, addressLine1, addressLine2, city, state, postalCode,
+            unitNumber, streetNumber, locality, landmark, city, state, pinCode,
         };
         try {
-            const userAddress1 = await UserAddress.create(data);
-            expect(userAddress1.country).toEqual(country);
+            const userAddress = await UserAddress.create(data);
+            expect(userAddress.country).toEqual(country);
         } catch (error) {
             expect(error.errors.country.kind).toEqual("required");
             expect(error.errors.country.path).toEqual("country");
