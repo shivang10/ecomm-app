@@ -2,7 +2,7 @@ const sellerUsername = "seller";
 const sellerEmail = "email@email.com";
 const sellerPassword = "sellerPassword";
 const sellerPhoneNumber = "sellerPhoneNumber";
-const sellerHomeAddress = [{
+const sellerHomeAddress = {
     unitNumber: "123",
     streetNo: "1",
     locality: "local",
@@ -10,7 +10,7 @@ const sellerHomeAddress = [{
     state: "New Delhi",
     pinCode: "79841",
     country: "India",
-}];
+};
 const sellerStoreIds = ["sellerStoreIds1"];
 const sellerOrdersReceived = ["sellerOrdersReceived"];
 const sellerWrongEmail = "abc@def";
