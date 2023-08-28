@@ -13,10 +13,14 @@ import {
     sellerRegisterLink,
     accountLink,
     sellerProfileLink,
-    sellerAddressLink
+    sellerAddressLink,
+    userProfileLink,
+    userAddressLink
 } from "./routesLink";
 import SellerAddress from "../seller-profile/seller-address";
 import SellerInfo from "../seller-profile/seller-info";
+import UserAddress from "../user-profile/user-address";
+import UserProfile from "../user-profile/user-profile";
 
 const Homepage = lazy(() => import("../homepage/homepage"));
 const UserRegister = lazy(() => import("../user-auth/user-register"));
@@ -34,6 +38,8 @@ const PageRoutes = () => {
                     <Route exact path={accountLink} element={<MyAccount/>}/>
                     <Route exact path={sellerProfileLink} element={<SellerInfo/>}/>
                     <Route exact path={sellerAddressLink} element={<SellerAddress/>}/>
+                    <Route exact path={userProfileLink} element={<UserProfile />} />
+                    <Route exact path={userAddressLink} element={<UserAddress />} />
                 </Route>
                 <Route path={homepageLink} element={<PublicRoute/>}>
                     <Route exact path={homepageLink} element={<Homepage/>}/>
