@@ -50,4 +50,12 @@ const addUserAddress = require("./routes/add-user-address");
 
 app.use("/add-user-address", addUserAddress);
 
+const getUserInfo = require("./routes/user-info");
+
+app.use("/user/info", getUserInfo);
+
+const getUserAddresses = require("./routes/user-address");
+
+app.use("/user/address/", getUserAddresses);
+
 module.exports = app;
