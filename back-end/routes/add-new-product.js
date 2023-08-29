@@ -8,9 +8,10 @@ const VariationSchema = require("../models/product-variation");
 const ProductSchema = require("../models/products");
 const StoreSchema = require("../models/store");
 
-router.post("/", validateSellerToken, async (req, res) => {
+router.post("/:id", validateSellerToken, async (req, res) => {
+    const sellerId = req.params.id;
     const {
-        name, sellerId, tags, variation, description, storeId,
+        name, tags, variation, description, storeId,
     } = req.body;
 
     if (!name || !sellerId || !tags || !variation || !description) {

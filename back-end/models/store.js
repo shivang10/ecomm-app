@@ -4,7 +4,7 @@ const AddressSchema = require("./address");
 const Store = new mongoose.Schema({
     name: { type: String, required: true },
     sellerId: { type: String, required: true },
-    address: { type: AddressSchema.schema, required: false },
+    address: { type: AddressSchema.schema, required: true },
     products: { type: Array, required: false },
 });
 
