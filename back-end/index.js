@@ -42,7 +42,7 @@ const addStore = require("./routes/add-store");
 
 app.use("/add-store", addStore);
 
-const addSellerAddress = require("./routes/add-seller-address");
+const addSellerAddress = require("./routes/add-update-seller-address");
 
 app.use("/add-seller-address", addSellerAddress);
 
