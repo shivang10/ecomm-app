@@ -66,4 +66,8 @@ const newOrderPayment = require("./routes/new-order-payment");
 
 app.use("/payment", newOrderPayment);
 
+const getProductsList = require("./routes/get-products-list");
+
+app.use("/products", getProductsList);
+
 module.exports = app;
