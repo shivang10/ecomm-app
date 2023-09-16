@@ -58,4 +58,8 @@ const getUserAddresses = require("./routes/user-address");
 
 app.use("/user/address/", getUserAddresses);
 
+const newOrder = require("./routes/new-order");
+
+app.use("/order", newOrder);
+
 module.exports = app;

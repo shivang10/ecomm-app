@@ -1,7 +1,5 @@
-const apiResponse = (data = {}, message = "") => {
-    return {
-        message, data
-    };
-};
+const apiResponse = (data = {}, message = "") => ({
+    message, data,
+});
 
 module.exports = apiResponse;

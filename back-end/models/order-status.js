@@ -5,7 +5,7 @@ const OrderStatus = new mongoose.Schema({
     orderStatus: {
         type: String,
         required: true,
-        enum: ["placed", "packed", "shipped", "out for delivery", "delivered", "canceled", "returned"],
+        enum: ["placed", "packed", "shipped", "out for delivery", "delivered", "cancelled", "returned"],
     },
 });
 
