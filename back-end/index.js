@@ -78,4 +78,8 @@ const getUserOrders = require("./routes/get-user-orders");
 
 app.use("/user-orders", getUserOrders);
 
+const getSellerProducts = require("./routes/get-seller-products");
+
+app.use("/seller-products", getSellerProducts);
+
 module.exports = app;
