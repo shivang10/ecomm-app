@@ -70,4 +70,8 @@ const getProductsList = require("./routes/get-products-list");
 
 app.use("/products", getProductsList);
 
+const getUserPaymentMethods = require("./routes/get-user-payment-methods");
+
+app.use("/payment-methods", getUserPaymentMethods);
+
 module.exports = app;

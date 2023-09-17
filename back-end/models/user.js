@@ -7,6 +7,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     address: { type: [AddressSchema.schema], required: false },
+    payment: { type: [String], required: false },
 });
 
 const model = mongoose.model("UserSchema", UserSchema);
