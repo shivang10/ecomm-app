@@ -7,7 +7,6 @@ const PaymentMethod = new mongoose.Schema({
     cardExpiry: { type: String, required: false },
     upiId: { type: String, required: false },
     userId: { type: String, required: true },
-    amount: { type: Number, required: true },
 });
 
 const model = mongoose.model("PaymentMethod", PaymentMethod);

@@ -20,7 +20,6 @@ router.post("/:id", validateUserToken, async (req, res) => {
         if (paymentType === paymentTypeEnum.cash) {
             const paymentInfo = await PaymentMethodsSchema.create({
                 paymentType,
-                amount: paymentRequest.amount,
                 userId: paymentRequest.userId,
             });
             return res.status(200).send(apiResponse(paymentInfo, "Your payment is successfully processed."));
@@ -30,7 +29,6 @@ router.post("/:id", validateUserToken, async (req, res) => {
             }
             const paymentInfo = await PaymentMethodsSchema.create({
                 paymentType,
-                amount: paymentRequest.amount,
                 upiId: paymentRequest.upiId,
                 userId: paymentRequest.userId,
             });
@@ -41,7 +39,6 @@ router.post("/:id", validateUserToken, async (req, res) => {
         }
         const paymentInfo = await PaymentMethodsSchema.create({
             paymentType,
-            amount: paymentRequest.amount,
             cardName: paymentRequest.cardName,
             cardNumber: paymentRequest.cardNumber,
             cardExpiry: paymentRequest.cardExpiry,
