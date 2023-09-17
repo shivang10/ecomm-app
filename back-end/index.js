@@ -74,4 +74,8 @@ const getUserPaymentMethods = require("./routes/get-user-payment-methods");
 
 app.use("/payment-methods", getUserPaymentMethods);
 
+const getUserOrders = require("./routes/get-user-orders");
+
+app.use("/user-orders", getUserOrders);
+
 module.exports = app;
