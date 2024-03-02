@@ -8,18 +8,21 @@ const UserSchema = require("../models/user");
 
 router.post("/:id", validateSellerToken, async (req, res) => {
     const userId = req.params.id;
+    if (!userId) {
+        return res.status(400).send(apiResponse(null, "UserId is required"));
+    }
     const {
-        houseNo, streetNo, locality, landmark, city, state, pinCode,
+        unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
     } = req.body;
-    if (!houseNo || !userId || !locality || !city || !state || !pinCode) {
-        return res.status(400).send(apiResponse(null, "houseNo, locality, city, state, pinCode, userId all are required."));
+    if (!unitNumber || !city || !state || !pinCode || !country) {
+        return res.status(400).send(apiResponse(null, "unitNumber, locality, city, state, pinCode, country all are required."));
     }
 
     try {
         const address = {
-            houseNo, streetNo, locality, landmark, city, state, pinCode,
+            unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
         };
-        const addressSchema = new AddressSchema(address);
+        const addressSchema = await AddressSchema.create(address);
         const response = await UserSchema.updateOne({ _id: userId }, { $push: { address: addressSchema } });
         return res.status(200).send(apiResponse(response, "Address is successfully added."));
     } catch (err) {

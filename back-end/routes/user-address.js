@@ -13,7 +13,7 @@ router.get("/:id", validateUserToken, async (req, res) => {
     }
 
     try {
-        const userDetails = await UserSchema.findById({ _id: userId }, { password: 0 });
+        const userDetails = await UserSchema.findById({ _id: userId }, { address: 1, email: 1 });
 
         if (!userDetails) {
             return res.status(400).send(apiResponse(null, "No such user exists"));
