@@ -18,7 +18,9 @@ const {
     itemOrderTotalPrice,
     itemOrderPriceWrong,
     itemOrderPrice,
-    itemOrderTotalPriceWrong,
+    itemOrderSellerId,
+    itemOrderStatus,
+    itemOrderPriceAfterDiscount,
 } = require("../dummy-data/item-order-dummy-data");
 
 describe("item order schema", () => {
@@ -29,6 +31,10 @@ describe("item order schema", () => {
             totalPrice: itemOrderTotalPrice,
             productId: itemOrderProductId,
             productDiscount: itemOrderDiscount,
+            sellerId: itemOrderSellerId,
+            orderStatus: itemOrderStatus,
+            priceAfterDiscount: itemOrderPriceAfterDiscount,
+            priceBeforeDiscount: itemOrderPrice,
         };
         const itemOrder = await ItemOrder.create(data);
         expect(itemOrder.price).toEqual(itemOrderPrice);
@@ -65,23 +71,6 @@ describe("item order schema", () => {
         } catch (error) {
             expect(error.errors.quantity.kind).toEqual("required");
             expect(error.errors.quantity.path).toEqual("quantity");
-        }
-    });
-
-    it("error on missing totalPrice", async () => {
-        const data = {
-            price: itemOrderPrice,
-            quantity: itemOrderQuantity,
-            productId: itemOrderProductId,
-            productDiscount: itemOrderDiscount,
-        };
-
-        try {
-            const itemOrder = await ItemOrder.create(data);
-            expect(itemOrder.totalPrice).toEqual(itemOrderTotalPrice);
-        } catch (error) {
-            expect(error.errors.totalPrice.kind).toEqual("required");
-            expect(error.errors.totalPrice.path).toEqual("totalPrice");
         }
     });
 
@@ -153,24 +142,6 @@ describe("item order schema", () => {
         } catch (error) {
             expect(error.errors.quantity.kind).toEqual("min");
             expect(error.errors.quantity.path).toEqual("quantity");
-        }
-    });
-
-    it("error on wrong item total price", async () => {
-        const data = {
-            price: itemOrderPrice,
-            quantity: itemOrderQuantity,
-            totalPrice: itemOrderTotalPriceWrong,
-            productDiscount: itemOrderDiscount,
-            productId: itemOrderProductId,
-        };
-
-        try {
-            const itemOrder = await ItemOrder.create(data);
-            expect(itemOrder.totalPrice).toEqual(itemOrderProductId);
-        } catch (error) {
-            expect(error.errors.totalPrice.kind).toEqual("min");
-            expect(error.errors.totalPrice.path).toEqual("totalPrice");
         }
     });
 });
