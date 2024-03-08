@@ -1,10 +1,10 @@
 const express = require("express");
 
 const router = express.Router();
-const apiResponse = require("../utils/api-response");
-const validateUserToken = require("../middlewares/validate-user-token");
-const paymentTypeEnum = require("../utils/payment-method-type");
-const PaymentMethodsSchema = require("../models/payment-methods");
+const apiResponse = require("../../../utils/api-response");
+const validateUserToken = require("../../../middlewares/validate-user-token");
+const paymentTypeEnum = require("../../../utils/payment-method-type");
+const PaymentMethodsSchema = require("../../../models/payment-methods");
 
 router.post("/:id", validateUserToken, async (req, res) => {
     const userId = req.params.id;
@@ -23,7 +23,8 @@ router.post("/:id", validateUserToken, async (req, res) => {
                 userId: paymentRequest.userId,
             });
             return res.status(200).send(apiResponse(paymentInfo, "Your payment is successfully processed."));
-        } if (paymentType === paymentTypeEnum.UPI) {
+        }
+        if (paymentType === paymentTypeEnum.UPI) {
             if (!paymentRequest.upiId) {
                 return res.status(400).send(apiResponse(null, "UpiId is required"));
             }

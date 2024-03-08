@@ -1,9 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const apiResponse = require("../utils/api-response");
-const validateUserToken = require("../middlewares/validate-user-token");
-const OrdersSchema = require("../models/orders");
+const apiResponse = require("../../../utils/api-response");
+const validateUserToken = require("../../../middlewares/validate-user-token");
+const OrdersSchema = require("../../../models/orders");
 
 router.get("/:id", validateUserToken, async (req, res) => {
     const userId = req.params.id;

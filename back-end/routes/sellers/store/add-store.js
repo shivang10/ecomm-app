@@ -1,10 +1,10 @@
 const express = require("express");
 
 const router = express.Router();
-const apiResponse = require("../utils/api-response");
-const validateSellerToken = require("../middlewares/validate-seller-token");
-const StoreSchema = require("../models/store");
-const SellerSchema = require("../models/seller");
+const apiResponse = require("../../../utils/api-response");
+const validateSellerToken = require("../../../middlewares/validate-seller-token");
+const StoreSchema = require("../../../models/store");
+const SellerSchema = require("../../../models/seller");
 
 router.post("/:id", validateSellerToken, async (req, res) => {
     const sellerId = req.params.id;

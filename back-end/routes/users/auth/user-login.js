@@ -4,8 +4,8 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const Seller = require("../models/seller");
-const apiResponse = require("../utils/api-response");
+const User = require("../../../models/user");
+const apiResponse = require("../../../utils/api-response");
 
 dotenv.config();
 
@@ -18,15 +18,15 @@ router.post("/", async (req, res) => {
     }
 
     try {
-        const isSellerUserValid = await Seller.findOne({ email }, { username: 1, password: 1, email: 1 });
-        const isPasswordCorrect = await bcrypt.compare(password, isSellerUserValid.password);
+        const isUserValid = await User.findOne({ email }, { username: 1, password: 1, email: 1 });
+        const isPasswordCorrect = await bcrypt.compare(password, isUserValid.password);
         if (isPasswordCorrect) {
             const token = jwt.sign({
                 // eslint-disable-next-line no-underscore-dangle
-                id: isSellerUserValid._id,
-                username: isSellerUserValid.username,
+                id: isUserValid._id,
+                username: isUserValid.username,
                 email,
-                type: "seller",
+                type: "user",
             }, JWT_SECRET, {
                 expiresIn: "7d",
             });

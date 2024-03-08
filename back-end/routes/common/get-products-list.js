@@ -1,8 +1,8 @@
 const express = require("express");
 
 const router = express.Router();
-const apiResponse = require("../utils/api-response");
-const ProductSchema = require("../models/products");
+const apiResponse = require("../../utils/api-response");
+const ProductSchema = require("../../models/products");
 
 router.get("/", async (req, res) => {
     const maxProductsAllowedToBeFetched = 100;

@@ -6,79 +6,79 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const userRegister = require("./routes/user-register");
+const userRegister = require("./routes/users/auth/user-register");
 
 app.use("/user-register", userRegister);
 
-const userLogin = require("./routes/user-login");
+const userLogin = require("./routes/users/auth/user-login");
 
 app.use("/user-login", userLogin);
 
-const sellerRegister = require("./routes/seller-register");
+const sellerRegister = require("./routes/sellers/auth/seller-register");
 
 app.use("/seller-register", sellerRegister);
 
-const sellerLogin = require("./routes/seller-login");
+const sellerLogin = require("./routes/sellers/auth/seller-login");
 
 app.use("/seller-login", sellerLogin);
 
-const addProduct = require("./routes/add-new-product");
+const addProduct = require("./routes/sellers/products/add-new-product");
 
 app.use("/add-product", addProduct);
 
-const addProductCategory = require("./routes/add-product-category");
+const addProductCategory = require("./routes/sellers/products/add-product-category");
 
 app.use("/add-product-category", addProductCategory);
 
-const getSellerInfo = require("./routes/seller-info");
+const getSellerInfo = require("./routes/sellers/profile/seller-info");
 
 app.use("/seller/info/", getSellerInfo);
 
-const getSellerAddress = require("./routes/seller-address");
+const getSellerAddress = require("./routes/sellers/profile/seller-address");
 
 app.use("/seller/address/", getSellerAddress);
 
-const addStore = require("./routes/add-store");
+const addStore = require("./routes/sellers/store/add-store");
 
 app.use("/add-store", addStore);
 
-const addSellerAddress = require("./routes/add-update-seller-address");
+const addSellerAddress = require("./routes/sellers/profile/add-update-seller-address");
 
 app.use("/add-seller-address", addSellerAddress);
 
-const addUserAddress = require("./routes/add-user-address");
+const addUserAddress = require("./routes/users/profile/add-user-address");
 
 app.use("/add-user-address", addUserAddress);
 
-const getUserInfo = require("./routes/user-info");
+const getUserInfo = require("./routes/users/profile/user-info");
 
 app.use("/user/info", getUserInfo);
 
-const getUserAddresses = require("./routes/user-address");
+const getUserAddresses = require("./routes/users/profile/user-address");
 
 app.use("/user/address/", getUserAddresses);
 
-const newOrder = require("./routes/new-order");
+const newOrder = require("./routes/users/orders/new-order");
 
 app.use("/order", newOrder);
 
-const newOrderPayment = require("./routes/new-order-payment");
+const newOrderPayment = require("./routes/users/payment-methods/new-order-payment");
 
 app.use("/payment", newOrderPayment);
 
-const getProductsList = require("./routes/get-products-list");
+const getProductsList = require("./routes/common/get-products-list");
 
 app.use("/products", getProductsList);
 
-const getUserPaymentMethods = require("./routes/get-user-payment-methods");
+const getUserPaymentMethods = require("./routes/users/payment-methods/get-user-payment-methods");
 
 app.use("/payment-methods", getUserPaymentMethods);
 
-const getUserOrders = require("./routes/get-user-orders");
+const getUserOrders = require("./routes/users/orders/get-user-orders");
 
 app.use("/user-orders", getUserOrders);
 
-const getSellerProducts = require("./routes/get-seller-products");
+const getSellerProducts = require("./routes/sellers/products/get-seller-products");
 
 app.use("/seller-products", getSellerProducts);
 

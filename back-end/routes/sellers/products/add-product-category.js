@@ -1,9 +1,9 @@
 const express = require("express");
 
 const router = express.Router();
-const CategorySchema = require("../models/product-categories");
-const apiResponse = require("../utils/api-response");
-const validateSellerToken = require("../middlewares/validate-seller-token");
+const CategorySchema = require("../../../models/product-categories");
+const apiResponse = require("../../../utils/api-response");
+const validateSellerToken = require("../../../middlewares/validate-seller-token");
 
 router.post("/", validateSellerToken, async (req, res) => {
     const { category } = req.body;

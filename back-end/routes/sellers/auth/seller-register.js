@@ -1,18 +1,18 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const emailValidator = require("email-validator");
-const User = require("../models/user");
+const Seller = require("../../../models/seller");
 
 const saltRounds = 10;
-const apiResponse = require("../utils/api-response");
+const apiResponse = require("../../../utils/api-response");
 
 router.route("/").post(async (req, res) => {
     const {
-        username, password: plainTextPassword, email, phoneNumber,
+        email, phoneNumber, username, password: plainTextPassword,
     } = req.body;
 
     if (!email || !plainTextPassword || !username || !phoneNumber) {
-        return res.status(400).send(apiResponse(null, "Email,password, username and phoneNumber, all fields are required."));
+        return res.status(400).send(apiResponse(null, "Email, password, username and phoneNumber, all fields are required."));
     }
 
     if (!emailValidator.validate(email)) {
@@ -22,7 +22,7 @@ router.route("/").post(async (req, res) => {
     const password = await bcrypt.hash(plainTextPassword, saltRounds);
 
     try {
-        const response = await User.create({
+        const response = await Seller.create({
             username, password, email, phoneNumber,
         });
         return res.status(200).send(apiResponse(response, "Account is successfully created."));

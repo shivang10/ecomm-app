@@ -1,12 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const apiResponse = require("../utils/api-response");
-const validateUserToken = require("../middlewares/validate-user-token");
-const UserSchema = require("../models/user");
-const OrdersSchema = require("../models/orders");
-const processOrderedItems = require("../utils/process-ordered-items");
-const updateItemsQuantity = require("../utils/update-items-quantity");
+const apiResponse = require("../../../utils/api-response");
+const validateUserToken = require("../../../middlewares/validate-user-token");
+const UserSchema = require("../../../models/user");
+const OrdersSchema = require("../../../models/orders");
+const processOrderedItems = require("../../../utils/process-ordered-items");
+const updateItemsQuantity = require("../../../utils/update-items-quantity");
 
 router.post("/:id", validateUserToken, async (req, res) => {
     const userId = req.params.id;
