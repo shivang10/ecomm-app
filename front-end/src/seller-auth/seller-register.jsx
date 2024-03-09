@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 
-import { Link } from "react-router-dom";
-
-import { sellerAuthRegisterService } from "./services";
-import Snackbar from "../components/snackbar/snackbar";
-import { sellerLoginLink, userLoginLink } from "../routes/routesLink";
-import { enums } from "../utils/enums/enums";
+import {sellerAuthRegisterService} from "./services";
+import {sellerLoginLink, userLoginLink} from "../routes/routesLink";
+import {enums} from "../utils/enums/enums";
 
 const UserRegister = () => {
 
@@ -13,7 +10,7 @@ const UserRegister = () => {
         "email": "", "password": "", "username": "", "phoneNumber": ""
     });
 
-    const [snackType, updateSnackType] = useState({ type: "", message: "" });
+    const [snackType, updateSnackType] = useState({type: "", message: ""});
 
     const handleChange = (event) => {
         updateSellerDetails({
@@ -25,43 +22,74 @@ const UserRegister = () => {
         event.preventDefault();
         sellerAuthRegisterService(sellerDetails)
             .then(res => {
-                updateSnackType({ type: enums.snackBar.success, message: res.data.message });
+                updateSnackType({type: enums.snackBar.success, message: res.data.message});
             })
             .catch(err => {
-                updateSnackType({ type: enums.snackBar.error, message: err.response.data.message });
+                updateSnackType({type: enums.snackBar.error, message: err.response.data.message});
             });
     };
     return (
         <div className="flex-hc-vc">
-            <form className="auth-form">
-                <div className="text-36px-black-600 flex-hc-vc">Register</div>
-                <hr className="divider-horizontal" />
-
-                <label className="text-24px-black-500" htmlFor="email">Email</label>
-                <input value={sellerDetails.email} onChange={handleChange} type="text" placeholder="Email"
-                    name="email" />
-
-                <label className="text-24px-black-500" htmlFor="username">Username</label>
-                <input value={sellerDetails.username} onChange={handleChange} type="text" placeholder="Username"
-                    name="username" />
-
-                <label className="text-24px-black-500" htmlFor="phoneNumber">Phone Number</label>
-                <input value={sellerDetails.phoneNumber} onChange={handleChange} type="text" placeholder="Phone Number"
-                    name="phoneNumber" />
-
-                <label className="text-24px-black-500" htmlFor="password">Password</label>
-                <input value={sellerDetails.password} onChange={handleChange} type="password" placeholder="Password"
-                    name="password" />
-
-                <div className="btn-22px-black flex-hc-vc" onClick={handleSubmit}>Register</div>
-                <div className="text-20px-black-500 flex-hc-vc">
-                    Already a seller? <Link className="btn-20px-black" to={sellerLoginLink}>Login</Link>
+            <div className="card">
+                <div className="card-content content">
+                    <form className="mb-2">
+                        <div className="field">
+                            <p className="control has-icons-left has-icons-right">
+                                <input className="input" type="text" placeholder="Username"
+                                    value={sellerDetails.username}
+                                    onChange={handleChange} name="username" required={true}/>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left has-icons-right">
+                                <input className="input" type="email" placeholder="Email" value={sellerDetails.email}
+                                    onChange={handleChange} name="email" required={true}/>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left">
+                                <input className="input" type="password" placeholder="Password"
+                                    value={sellerDetails.password}
+                                    onChange={handleChange} name="password" required={true}/>
+                            </p>
+                        </div>
+                        <div className="field">
+                            <p className="control has-icons-left has-icons-right">
+                                <input className="input" type="number" placeholder="Phone Number"
+                                    value={sellerDetails.phoneNumber}
+                                    onChange={handleChange} name="phoneNumber" required={true}/>
+                            </p>
+                        </div>
+                        <div className="field flex-hc-vc">
+                            <p className="control">
+                                <button className="button is-info" onClick={handleSubmit}>
+                                    Register
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+                    {snackType.type === enums.snackBar.success &&
+                        <div className="notification is-primary is-light is-small pl-3 py-4">
+                            {snackType.message}
+                        </div>
+                    }
+                    {snackType.type === enums.snackBar.error &&
+                        <div className="notification is-danger is-light is-small pl-3 py-4">
+                            {snackType.message}
+                        </div>
+                    }
                 </div>
-                <Snackbar type={snackType.type} message={snackType.message} />
-                <div className="text-20px-black-500 flex-hc-vc">
-                    Want to buy? <Link className="btn-20px-black" to={userLoginLink}>Login as User</Link>
-                </div>
-            </form>
+                <footer className="card-footer">
+                    <div className="card-footer-item">
+                        Already a seller?
+                        <a href={sellerLoginLink} className="button is-info">Login</a>
+                    </div>
+                    <div className="card-footer-item">
+                        Want to buy?
+                        <a href={userLoginLink} className="button is-info">Login</a>
+                    </div>
+                </footer>
+            </div>
         </div>
     );
 };

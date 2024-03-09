@@ -1,12 +1,11 @@
 import React from "react";
 
 import jwt from "jwt-decode";
-import { Link } from "react-router-dom";
 
 import sellerAccount from "./seller-account";
 import userAccount from "./user-account";
-import { enums } from "../utils/enums/enums";
-import { getLocalCache } from "../utils/local-cache/local-cache";
+import {enums} from "../utils/enums/enums";
+import {getLocalCache} from "../utils/local-cache/local-cache";
 
 function Account() {
     const token = getLocalCache(enums.user.token);
@@ -21,13 +20,18 @@ function Account() {
     const getUrl = (accountUrl) => accountUrl.replace("/:id", `/${profileId}`);
 
     const generateAccountOptionCards = (accountOpt) => accountOpt.map((accountOption) => (
-        <Link className="accountBoard-card" key={accountOption.name} to={getUrl(accountOption.url)}>
-            <div className="accountBoard-card__heading text-36px-black-600">{accountOption.name}</div>
-            <div className="accountBoard-card__logo">{accountOption.icon}</div>
-            <div className="accountBoard-card__description text-24px-black-500">
-                {accountOption.description}
-            </div>
-        </Link>
+        <a className="card" key={accountOption.name} href={getUrl(accountOption.url)}>
+            <header className="card-header">
+                <p className="card-header-title is-centered">
+                    {accountOption.name}
+                </p>
+            </header>
+            <footer className="card-footer">
+                <div className="card-footer-item is-size-6 ">
+                    <span className="mr-1"> {accountOption.icon}</span> {accountOption.description}
+                </div>
+            </footer>
+        </a>
     ));
 
     let accountCards;
