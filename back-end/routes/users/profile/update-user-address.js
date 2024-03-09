@@ -6,17 +6,9 @@ const validateUserToken = require("../../../middlewares/validate-user-token");
 const UserSchema = require("../../../models/user");
 const generateObjectId = require("../../../utils/generate-object-id");
 
-router.post("/:id/:addressId", validateUserToken, async (req, res) => {
+router.post("/:id/:aid", validateUserToken, async (req, res) => {
     const userId = generateObjectId(req.params.id);
-    const addressId = generateObjectId(req.params.addressId);
-
-    if (!userId) {
-        return res.status(400).send(apiResponse(null, "UserId is required"));
-    }
-
-    if (!addressId) {
-        return res.status(400).send(apiResponse(null, "AddressId is required"));
-    }
+    const addressId = generateObjectId(req.params.aid);
 
     try {
         const updatedAddressDetails = req.body;

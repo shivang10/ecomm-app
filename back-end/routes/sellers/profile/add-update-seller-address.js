@@ -5,9 +5,10 @@ const apiResponse = require("../../../utils/api-response");
 const validateSellerToken = require("../../../middlewares/validate-seller-token");
 const AddressSchema = require("../../../models/address");
 const SellerSchema = require("../../../models/seller");
+const generateObjectId = require("../../../utils/generate-object-id");
 
 router.post("/:id", validateSellerToken, async (req, res) => {
-    const sellerId = req.params.id;
+    const sellerId = generateObjectId(req.params.id);
     const {
         unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
     } = req.body;
@@ -16,11 +17,6 @@ router.post("/:id", validateSellerToken, async (req, res) => {
     }
 
     try {
-        const isSellerValid = await SellerSchema.findById({ _id: sellerId }, { email: 1 });
-
-        if (!isSellerValid) {
-            return res.status(400).send(apiResponse(null, "No such seller exists"));
-        }
         const address = {
             unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
         };

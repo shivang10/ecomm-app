@@ -7,9 +7,10 @@ const SellerSchema = require("../../../models/seller");
 const VariationSchema = require("../../../models/product-variation");
 const ProductSchema = require("../../../models/products");
 const StoreSchema = require("../../../models/store");
+const generateObjectId = require("../../../utils/generate-object-id");
 
 router.post("/:id", validateSellerToken, async (req, res) => {
-    const sellerId = req.params.id;
+    const sellerId = generateObjectId(req.params.id);
     const {
         name, tags, variation, description, storeId,
     } = req.body;
@@ -19,12 +20,6 @@ router.post("/:id", validateSellerToken, async (req, res) => {
     }
 
     try {
-        const isSellerValid = await SellerSchema.findById({ _id: sellerId }, { email: 1 });
-
-        if (!isSellerValid) {
-            return res.status(400).send(apiResponse(null, "No such seller exists"));
-        }
-
         const productVariations = variation.map((pv) => new VariationSchema({
             property: pv.property, price: pv.price, quantity: pv.quantity,
         }));
@@ -36,8 +31,9 @@ router.post("/:id", validateSellerToken, async (req, res) => {
         const response = await ProductSchema.create(product);
         // eslint-disable-next-line no-underscore-dangle
         const productId = (response._id).valueOf();
+        const storeOid = generateObjectId(storeId);
 
-        await StoreSchema.updateOne({ _id: storeId }, { $push: { products: productId } });
+        await StoreSchema.updateOne({ _id: storeOid }, { $push: { products: productId } });
 
         return res.status(200).send(apiResponse(response, "Product is successfully added"));
     } catch (error) {

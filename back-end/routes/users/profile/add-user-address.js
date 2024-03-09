@@ -5,12 +5,10 @@ const apiResponse = require("../../../utils/api-response");
 const validateSellerToken = require("../../../middlewares/validate-seller-token");
 const AddressSchema = require("../../../models/address");
 const UserSchema = require("../../../models/user");
+const generateObjectId = require("../../../utils/generate-object-id");
 
 router.post("/:id", validateSellerToken, async (req, res) => {
-    const userId = req.params.id;
-    if (!userId) {
-        return res.status(400).send(apiResponse(null, "UserId is required"));
-    }
+    const userId = generateObjectId(req.params.id);
     const {
         unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
     } = req.body;
