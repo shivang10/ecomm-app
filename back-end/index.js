@@ -82,4 +82,8 @@ const getSellerProducts = require("./routes/sellers/products/get-seller-products
 
 app.use("/seller-products", getSellerProducts);
 
+const updateUserAddress = require("./routes/users/profile/update-user-address");
+
+app.use("/update-user-address", updateUserAddress);
+
 module.exports = app;
