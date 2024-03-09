@@ -3,7 +3,8 @@ const orderStatusEnums = {
     packed: "packed",
     outForDelivery: "outForDelivery",
     delivered: "delivered",
-    cancelled: "cancelled",
+    userCancelled: "userCancelled",
+    sellerCancelled: "sellerCancelled",
     returned: "returned",
 };
 
