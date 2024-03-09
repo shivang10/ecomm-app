@@ -17,7 +17,7 @@ router.get("/:id", validateSellerToken, async (req, res) => {
         const pastOrders = await OrdersSchema.find({ "items.sellerId": sellerId }, { "items.$": 1 }).skip(skipDocs).limit(limit);
         return res.status(200).send(apiResponse(pastOrders, "Orders are successfully fetched."));
     } catch (error) {
-        return res.status(500).send(apiResponse(error, "Unable to fetch user orders."));
+        return res.status(500).send(apiResponse(error, "Unable to fetch seller orders."));
     }
 });
 
