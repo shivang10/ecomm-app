@@ -4,5 +4,6 @@ MainRouter.use("/add-address", require("./add-user-address"));
 MainRouter.use("/update-address", require("./update-user-address"));
 MainRouter.use("/get-address", require("./user-address"));
 MainRouter.use("/info", require("./user-info"));
+MainRouter.use("/delete-address", require("./delete-address"));
 
 module.exports = MainRouter;
