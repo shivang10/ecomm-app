@@ -7,6 +7,7 @@ const PaymentMethod = new mongoose.Schema({
     cardExpiry: { type: String, required: false },
     upiId: { type: String, required: false },
     userId: { type: String, required: true },
+    isDeleted: { type: Boolean, required: true, default: false },
 });
 
 const model = mongoose.model("PaymentMethod", PaymentMethod);

@@ -9,6 +9,7 @@ const Address = new mongoose.Schema({
     state: { type: String, required: true },
     pinCode: { type: String, required: true },
     country: { type: String, required: true },
+    isDeleted: { type: Boolean, required: true, default: false },
 }, { strict: "throw" });
 
 const model = mongoose.model("Address", Address);

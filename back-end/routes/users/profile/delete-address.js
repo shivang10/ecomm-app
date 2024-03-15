@@ -11,12 +11,12 @@ router.delete("/:id/:aid", validateUserToken, async (req, res) => {
     const addressId = generateObjectId(req.params.aid);
 
     try {
-        const updateQuery = { _id: userId };
-        const deleteQuery = { $pull: { address: { _id: addressId } } };
-        const result = await UserSchema.updateOne(updateQuery, deleteQuery);
+        const fetchQuery = { _id: userId, "address._id": addressId };
+        const deleteQuery = { $set: { "address.$.isDeleted": true } };
+        const result = await UserSchema.updateOne(fetchQuery, deleteQuery);
 
-        if (result.modifiedCount === 0) {
-            return res.status(500).send(apiResponse(null, "Unable to find the address"));
+        if (result.modifiedCount === 0 || result.acknowledged === false) {
+            return res.status(500).send(apiResponse(null, "Unable to delete the address"));
         }
 
         return res.status(200).send(apiResponse(result, "Address is successfully deleted."));
