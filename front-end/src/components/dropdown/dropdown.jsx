@@ -9,11 +9,11 @@ const Dropdown = ({dropdownOptions}) => {
             return <a
                 key={dropdownOption["name"]}
                 href={dropdownOption["url"]}
-                className="dropdown-item is-size-6 is-info is-light">
+                className="navbar-item is-size-6 is-info is-light">
                 {dropdownOption["name"]}
             </a>;
         } else {
-            return <a className="dropdown-item is-size-6 is-info is-light"
+            return <a className="navbar-item is-size-6 is-info is-light"
                 onClick={() => handleDropDownFunction(dropdownOption["functionDefinition"])}
                 key={dropdownOption["name"]}>
                 {dropdownOption["name"]}
@@ -22,17 +22,8 @@ const Dropdown = ({dropdownOptions}) => {
     });
 
     return (
-        <div className="dropdown is-hoverable is-right">
-            <div className="dropdown-trigger">
-                <button className="button is-info" aria-haspopup="true" aria-controls="dropdown-menu3">
-                    My Account
-                </button>
-            </div>
-            <div className="dropdown-menu" id="dropdown-menu6" role="menu">
-                <div className="dropdown-content">
-                    {dropDownList}
-                </div>
-            </div>
+        <div className="navbar-dropdown">
+            {dropDownList}
         </div>
     );
 };

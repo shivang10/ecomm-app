@@ -1,8 +1,10 @@
-export const userLoginURL = "http://localhost:5000/user-login";
-export const userRegisterURL = "http://localhost:5000/user-register";
-export const sellerLoginURL = "http://localhost:5000/seller-login";
-export const sellerRegisterURL = "http://localhost:5000/seller-register";
-export const sellerProfileURL = "http://localhost:5000/seller/info/:id";
-export const sellerAddressURL = "http://localhost:5000/seller/address/:id";
-export const userProfileURL = "http://localhost:5000/user/info/:id";
-export const userAddressURL = "http://localhost:5000/user/address/:id";
+export const localhostUrl = "http://localhost:5000";
+
+export const userLoginURL = `${localhostUrl}/user/auth/login`;
+export const userRegisterURL = `${localhostUrl}/user-register`;
+export const sellerLoginURL = `${localhostUrl}/seller-login`;
+export const sellerRegisterURL = `${localhostUrl}/seller-register`;
+export const sellerProfileURL = `${localhostUrl}/seller/info/:id`;
+export const sellerAddressURL = `${localhostUrl}/seller/address/:id`;
+export const userProfileURL = `${localhostUrl}/user/profile/info/:id`;
+export const userAddressURL = `${localhostUrl}/user/profile/get-address/:id`;

@@ -27,9 +27,10 @@ function Account() {
                 </p>
             </header>
             <footer className="card-footer">
-                <div className="card-footer-item is-size-6 ">
-                    <span className="mr-1"> {accountOption.icon}</span> {accountOption.description}
-                </div>
+                <span className="card-footer-item is-size-6 ">
+                    <span className={`mr-1 is-size-3 ${accountOption.styles}`}> {accountOption.icon}</span>
+                    {accountOption.description}
+                </span>
             </footer>
         </a>
     ));
