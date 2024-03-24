@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {enums} from "../utils/enums/enums";
+import {enums} from "../../utils/enums/enums";
 
 const initialSnackBarState = {
     isSuccess: false,

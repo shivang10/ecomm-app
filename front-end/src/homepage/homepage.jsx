@@ -1,8 +1,9 @@
 import React from "react";
+
 const Homepage = () => {
     return (
         <div>
-        My DMY Store
+            My DMY Store
         </div>
     );
 };

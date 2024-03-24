@@ -4,13 +4,17 @@ export const enums = {
         warning: "warning",
         danger: "danger",
         stale: "stale"
-    }, user: {
-        token: "token",
+    },
+    user: {
         account: "user"
-    }, seller: {
-        token: "token",
+    },
+    seller: {
         account: "seller"
-    }, navbar: {
+    },
+    navbar: {
         common: "common"
+    },
+    common: {
+        token: "token"
     }
 };

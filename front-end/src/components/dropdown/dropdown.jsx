@@ -1,23 +1,25 @@
 import React from "react";
 
+import {Link} from "react-router-dom";
+
 const Dropdown = ({dropdownOptions}) => {
 
     const handleDropDownFunction = (dropdownFunction) => dropdownFunction();
 
     const dropDownList = dropdownOptions.map((dropdownOption) => {
         if (dropdownOption["type"] === "url") {
-            return <a
+            return <Link
                 key={dropdownOption["name"]}
-                href={dropdownOption["url"]}
+                to={dropdownOption["url"]}
                 className="navbar-item is-size-6 is-info is-light">
                 {dropdownOption["name"]}
-            </a>;
+            </Link>;
         } else {
-            return <a className="navbar-item is-size-6 is-info is-light"
+            return <Link className="navbar-item is-size-6 is-info is-light"
                 onClick={() => handleDropDownFunction(dropdownOption["functionDefinition"])}
-                key={dropdownOption["name"]}>
+                key={dropdownOption["name"]} to="">
                 {dropdownOption["name"]}
-            </a>;
+            </Link>;
         }
     });
 

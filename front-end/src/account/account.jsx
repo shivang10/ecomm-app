@@ -1,6 +1,7 @@
 import React from "react";
 
 import jwt from "jwt-decode";
+import {Link} from "react-router-dom";
 
 import sellerAccount from "./seller-account";
 import userAccount from "./user-account";
@@ -8,7 +9,7 @@ import {enums} from "../utils/enums/enums";
 import {getLocalCache} from "../utils/local-cache/local-cache";
 
 function Account() {
-    const token = getLocalCache(enums.user.token);
+    const token = getLocalCache(enums.common.token);
     let accountType = enums.navbar.common;
     let profileId;
     if (token) {
@@ -20,7 +21,7 @@ function Account() {
     const getUrl = (accountUrl) => accountUrl.replace("/:id", `/${profileId}`);
 
     const generateAccountOptionCards = (accountOpt) => accountOpt.map((accountOption) => (
-        <a className="card" key={accountOption.name} href={getUrl(accountOption.url)}>
+        <Link className="card" key={accountOption.name} to={getUrl(accountOption.url)}>
             <header className="card-header">
                 <p className="card-header-title is-centered">
                     {accountOption.name}
@@ -32,7 +33,7 @@ function Account() {
                     {accountOption.description}
                 </span>
             </footer>
-        </a>
+        </Link>
     ));
 
     let accountCards;

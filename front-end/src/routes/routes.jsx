@@ -1,21 +1,20 @@
-import React from "react";
-import {lazy, Suspense} from "react";
+import React, {lazy, Suspense} from "react";
 
 import {Route, Routes} from "react-router-dom";
 
 import PrivateRoute from "./privateRoute";
 import PublicRoute from "./publicRoute";
 import {
-    homepageLink,
-    userLoginLink,
-    userRegisterLink,
-    sellerLoginLink,
-    sellerRegisterLink,
     accountLink,
-    sellerProfileLink,
+    homepageLink,
     sellerAddressLink,
+    sellerLoginLink,
+    sellerProfileLink,
+    sellerRegisterLink,
+    userAddressLink,
+    userLoginLink,
     userProfileLink,
-    userAddressLink
+    userRegisterLink
 } from "./routesLink";
 import SellerAddress from "../seller-profile/seller-address";
 import SellerInfo from "../seller-profile/seller-info";
@@ -33,16 +32,15 @@ const PageRoutes = () => {
     return (
         <Suspense fallback={<div>...</div>}>
             <Routes>
-                <Route path={homepageLink} element={<PrivateRoute/>}>
-                    <Route exact path={homepageLink} element={<Homepage/>}/>
+                <Route exact path={homepageLink} element={<Homepage/>}/>
+                <Route element={<PrivateRoute/>}>
                     <Route exact path={accountLink} element={<MyAccount/>}/>
                     <Route exact path={sellerProfileLink} element={<SellerInfo/>}/>
                     <Route exact path={sellerAddressLink} element={<SellerAddress/>}/>
-                    <Route exact path={userProfileLink} element={<UserProfile />} />
-                    <Route exact path={userAddressLink} element={<UserAddress />} />
+                    <Route exact path={userProfileLink} element={<UserProfile/>}/>
+                    <Route exact path={userAddressLink} element={<UserAddress/>}/>
                 </Route>
                 <Route path={homepageLink} element={<PublicRoute/>}>
-                    <Route exact path={homepageLink} element={<Homepage/>}/>
                     <Route exact path={userLoginLink} element={<UserLogin/>}/>
                     <Route exact path={userRegisterLink} element={<UserRegister/>}/>
                     <Route exact path={sellerLoginLink} element={<SellerLogin/>}/>

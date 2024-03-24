@@ -24,7 +24,8 @@ const UserLogin = () => {
         userAuthLoginService(userDetails)
             .then(res => {
                 const message = res.data.message;
-                setLocalCache(enums.user.token, res.data.data.token);
+                const token = res.data.data.token;
+                setLocalCache(enums.common.token, token);
                 setSnackBarStatus(enums.snackBar.success, message);
                 setTimeout(() => {
                     navigate("/");

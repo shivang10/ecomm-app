@@ -1,4 +1,4 @@
-import {setSnackBarState} from "../redux/snackbar-reducers";
+import {setSnackBarState} from "../redux/common/snackbar-slice";
 import {store} from "../redux/store";
 import {enums} from "../utils/enums/enums";
 

@@ -2,6 +2,7 @@ import React from "react";
 
 import {BiSolidOffer} from "react-icons/bi";
 import {TbCategory} from "react-icons/tb";
+import {Link} from "react-router-dom";
 
 import {userAccountMenuItems} from "./user-account-menu-items";
 import MyDMYStoreLogo from "../../assets/my-DMY-store.png";
@@ -12,17 +13,15 @@ const UserNavbar = () => {
     return (
         <nav className="navbar is-light" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href={homepageLink}>
+                <Link className="navbar-item" to={homepageLink}>
                     <img className="py-1 px-2" style={{maxHeight: 60}} src={MyDMYStoreLogo} alt="myDMYStore"/>
-                </a>
-
-                <a role="button" className="navbar-item">
+                </Link>
+                <Link role="button" className="navbar-item" to="">
                     Categories <TbCategory className="ml-1 is-size-5 has-text-link"/>
-                </a>
-
-                <a role="button" className="navbar-item">
+                </Link>
+                <Link role="button" className="navbar-item" to="#">
                     Offers <BiSolidOffer className="ml-1 is-size-5 has-text-link"/>
-                </a>
+                </Link>
             </div>
 
             <div className="navbar-menu">
@@ -33,9 +32,9 @@ const UserNavbar = () => {
                 </div>
 
                 <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link is-info" aria-haspopup="true" aria-controls="dropdown-menu3">
+                    <Link to="" className="navbar-link is-info" aria-haspopup="true" aria-controls="dropdown-menu3">
                         My Account
-                    </a>
+                    </Link>
                     <Dropdown dropdownOptions={userAccountMenuItems}/>
                 </div>
             </div>
