@@ -4,6 +4,8 @@ import {BiSolidEditAlt} from "react-icons/bi";
 import {MdDelete} from "react-icons/md";
 
 import {userAddressService} from "../account/user-account-service";
+import {setSnackBarStatus} from "../action-creators/notification-action-creators";
+import {enums} from "../utils/enums/enums";
 import splitCamelCaseAndCapitalize from "../utils/helper-functions/camelCaseAndCapitalize";
 
 const excludeAddressKeys = ["_id", "isDeleted", "__v"];
@@ -16,9 +18,8 @@ const UserAddress = () => {
             .then((res) => {
                 const data = res.data.data;
                 updateUserAddress(data.address);
-                console.log(userAddress);
             }).catch((err) => {
-                console.error(err);
+                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
             });
     }, []);
 

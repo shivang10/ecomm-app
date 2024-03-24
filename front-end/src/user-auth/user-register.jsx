@@ -1,17 +1,14 @@
 import React, {useState} from "react";
 
 import {userAuthRegisterService} from "./services";
+import {setSnackBarStatus} from "../action-creators/notification-action-creators";
 import {sellerLoginLink, userLoginLink} from "../routes/routesLink";
 import {enums} from "../utils/enums/enums";
 
 const UserRegister = () => {
-
     const [userDetails, updateUserDetails] = useState({
         "email": "", "password": "", "username": "", "phoneNumber": ""
     });
-
-    const [snackType, updateSnackType] = useState({type: "", message: ""});
-
     const handleChange = (event) => {
         updateUserDetails({
             ...userDetails, [event.target.name]: event.target.value
@@ -22,13 +19,11 @@ const UserRegister = () => {
         event.preventDefault();
         userAuthRegisterService(userDetails)
             .then(res => {
-                updateSnackType({type: enums.snackBar.success, message: res.data.message});
+                const message = res.data.message;
+                setSnackBarStatus(enums.snackBar.success, message);
             })
             .catch(err => {
-                updateSnackType({type: enums.snackBar.error, message: err.response.data.message});
-                setTimeout(() => {
-                    updateSnackType({type: "", message: ""});
-                }, 2500);
+                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
             });
     };
     return (
@@ -70,16 +65,6 @@ const UserRegister = () => {
                             </p>
                         </div>
                     </form>
-                    {snackType.type === enums.snackBar.success &&
-                        <div className="notification is-primary is-light is-small pl-3 py-4">
-                            {snackType.message}
-                        </div>
-                    }
-                    {snackType.type === enums.snackBar.error &&
-                        <div className="notification is-danger is-light is-small pl-3 py-4">
-                            {snackType.message}
-                        </div>
-                    }
                 </div>
                 <footer className="card-footer">
                     <div className="card-footer-item">

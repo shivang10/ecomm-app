@@ -3,18 +3,16 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 import {sellerAuthLoginService} from "./services";
+import {setSnackBarStatus} from "../action-creators/notification-action-creators";
 import {sellerRegisterLink, userLoginLink} from "../routes/routesLink";
 import {enums} from "../utils/enums/enums";
 import {setLocalCache} from "../utils/local-cache/local-cache";
 
 const SellerLogin = () => {
-
     const navigate = useNavigate();
     const [sellerDetails, updateSellerDetails] = useState({
         "email": "", "password": ""
     });
-    const [snackType, updateSnackType] = useState({type: "", message: ""});
-
     const handleChange = (event) => {
         updateSellerDetails({
             ...sellerDetails, [event.target.name]: event.target.value
@@ -26,17 +24,14 @@ const SellerLogin = () => {
         sellerAuthLoginService(sellerDetails)
             .then(res => {
                 setLocalCache(enums.seller.token, res.data.data.token);
-                updateSnackType({type: enums.snackBar.success, message: res.data.message});
+                setSnackBarStatus(enums.snackBar.danger, res.data.message);
                 setTimeout(() => {
                     navigate("/");
                     window.location.reload();
-                }, 2000);
+                }, 2500);
             })
             .catch(err => {
-                updateSnackType({type: enums.snackBar.error, message: err.response.data.message});
-                setTimeout(() => {
-                    updateSnackType({type: "", message: ""});
-                }, 2500);
+                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
             });
     };
 
@@ -65,16 +60,6 @@ const SellerLogin = () => {
                         </p>
                     </div>
                 </form>
-                {snackType.type === enums.snackBar.success &&
-                    <div className="notification is-primary is-light is-small pl-3 py-4">
-                        {snackType.message}
-                    </div>
-                }
-                {snackType.type === enums.snackBar.error &&
-                    <div className="notification is-danger is-light is-small pl-3 py-4">
-                        {snackType.message}
-                    </div>
-                }
             </div>
             <footer className="card-footer">
                 <div className="card-footer-item">

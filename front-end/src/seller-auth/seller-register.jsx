@@ -1,17 +1,14 @@
 import React, {useState} from "react";
 
 import {sellerAuthRegisterService} from "./services";
+import {setSnackBarStatus} from "../action-creators/notification-action-creators";
 import {sellerLoginLink, userLoginLink} from "../routes/routesLink";
 import {enums} from "../utils/enums/enums";
 
 const UserRegister = () => {
-
     const [sellerDetails, updateSellerDetails] = useState({
         "email": "", "password": "", "username": "", "phoneNumber": ""
     });
-
-    const [snackType, updateSnackType] = useState({type: "", message: ""});
-
     const handleChange = (event) => {
         updateSellerDetails({
             ...sellerDetails, [event.target.name]: event.target.value
@@ -22,10 +19,10 @@ const UserRegister = () => {
         event.preventDefault();
         sellerAuthRegisterService(sellerDetails)
             .then(res => {
-                updateSnackType({type: enums.snackBar.success, message: res.data.message});
+                setSnackBarStatus(enums.snackBar.danger, res.data.message);
             })
             .catch(err => {
-                updateSnackType({type: enums.snackBar.error, message: err.response.data.message});
+                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
             });
     };
     return (
@@ -68,16 +65,6 @@ const UserRegister = () => {
                             </p>
                         </div>
                     </form>
-                    {snackType.type === enums.snackBar.success &&
-                        <div className="notification is-primary is-light is-small pl-3 py-4">
-                            {snackType.message}
-                        </div>
-                    }
-                    {snackType.type === enums.snackBar.error &&
-                        <div className="notification is-danger is-light is-small pl-3 py-4">
-                            {snackType.message}
-                        </div>
-                    }
                 </div>
                 <footer className="card-footer">
                     <div className="card-footer-item">

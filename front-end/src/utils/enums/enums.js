@@ -1,6 +1,9 @@
 export const enums = {
     snackBar: {
-        success: "success", warning: "warning", error: "error"
+        success: "success",
+        warning: "warning",
+        danger: "danger",
+        stale: "stale"
     }, user: {
         token: "token",
         account: "user"
