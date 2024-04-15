@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 
 import {sellerAddressService} from "../account/seller-account-services";
-import {setSnackBarStatus} from "../action-creators/notification-action-creators";
-import {enums} from "../utils/enums/enums";
 
 const SellerAddress = () => {
     const [sellerAddress, updateSellerAddress] = useState([]);
@@ -13,7 +11,7 @@ const SellerAddress = () => {
                 console.log(res);
             })
             .catch((err) => {
-                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
+                console.error(err.response.data.message);
             });
 
     }, []);

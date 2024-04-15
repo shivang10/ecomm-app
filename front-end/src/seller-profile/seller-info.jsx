@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 
-import { sellerProfileInfoService } from "../account/seller-account-services";
+import {sellerProfileInfoService} from "../account/seller-account-services";
 
 const SellerInfo = () => {
     const [sellerInfo, updateSellerInfo] = useState({
@@ -16,15 +16,17 @@ const SellerInfo = () => {
                 });
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err.response.data.message);
             });
     }, []);
 
-    return (<div>
-        <div>{sellerInfo.email}</div>
-        <div>{sellerInfo.phoneNumber}</div>
-        <div>{sellerInfo.phoneNumber}</div>
-    </div>);
+    return (
+        <div>
+            <div>{sellerInfo.email}</div>
+            <div>{sellerInfo.phoneNumber}</div>
+            <div>{sellerInfo.phoneNumber}</div>
+        </div>
+    );
 };
 
 export default SellerInfo;

@@ -33,7 +33,7 @@ const UserLogin = () => {
                 }, 2500);
             })
             .catch(err => {
-                setSnackBarStatus(enums.snackBar.danger, err?.response?.data?.message);
+                console.error(err.response.data.message);
             });
     };
 

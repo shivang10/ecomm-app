@@ -1,7 +1,6 @@
-import axios from "axios";
+import {userLoginURL, userRegisterURL} from "../api-links/user-apis/auth";
+import axiosInterceptor from "../utils/services/axios-interceptor";
 
-import { userLoginURL, userRegisterURL } from "../api-links/api-links";
+export const userAuthLoginService = async (userLoginData) => await axiosInterceptor.post(userLoginURL, userLoginData);
 
-export const userAuthLoginService = async (userLoginData) => await axios.post(userLoginURL, userLoginData);
-
-export const userAuthRegisterService = async (userRegisterData) => await axios.post(userRegisterURL, userRegisterData);
+export const userAuthRegisterService = async (userRegisterData) => await axiosInterceptor.post(userRegisterURL, userRegisterData);

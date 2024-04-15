@@ -1,7 +1,6 @@
-import axios from "axios";
+import {sellerLoginURL, sellerRegisterURL} from "../api-links/seller-apis/auth";
+import axiosInterceptor from "../utils/services/axios-interceptor";
 
-import { sellerLoginURL, sellerRegisterURL } from "../api-links/api-links";
+export const sellerAuthLoginService = async (sellerLoginData) => await axiosInterceptor.post(sellerLoginURL, sellerLoginData);
 
-export const sellerAuthLoginService = async (sellerLoginData) => await axios.post(sellerLoginURL, sellerLoginData);
-
-export const sellerAuthRegisterService = async (sellerRegisterData) => await axios.post(sellerRegisterURL, sellerRegisterData);
+export const sellerAuthRegisterService = async (sellerRegisterData) => await axiosInterceptor.post(sellerRegisterURL, sellerRegisterData);

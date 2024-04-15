@@ -22,7 +22,7 @@ const UserRegister = () => {
                 setSnackBarStatus(enums.snackBar.danger, res.data.message);
             })
             .catch(err => {
-                setSnackBarStatus(enums.snackBar.danger, err.response.data.message);
+                console.error(err.response.data.message);
             });
     };
     return (
