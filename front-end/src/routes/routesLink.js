@@ -12,3 +12,5 @@ export const storeLink = "/store";
 export const revenueLink = "/revenue";
 export const paymentMethodsLink = "/payment-methods";
 export const ordersPlacedLink = "/orders-placed";
+export const addNewAddress = "/add-address";
+export const editUserAddress = "/edit-address/:id";

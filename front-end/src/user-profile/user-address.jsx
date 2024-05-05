@@ -2,9 +2,11 @@ import React, {useEffect, useState} from "react";
 
 import {BiSolidEditAlt} from "react-icons/bi";
 import {MdDelete} from "react-icons/md";
+import {Link} from "react-router-dom";
 
 import {userAddressService} from "../account/user-account-service";
 import {setSnackBarStatus} from "../action-creators/notification-action-creators";
+import {addNewAddress} from "../routes/routesLink";
 import {enums} from "../utils/enums/enums";
 import splitCamelCaseAndCapitalize from "../utils/helper-functions/camelCaseAndCapitalize";
 
@@ -44,7 +46,9 @@ const UserAddress = () => {
                 })}
             </div>
             <footer className="card-footer">
-                <a href="#" className="card-footer-item yellow-color">Edit <BiSolidEditAlt className="ml-1 is-size-5"/></a>
+                <Link to={`/edit-address/${address._id}`} state={address}
+                    className="card-footer-item yellow-color">Edit <BiSolidEditAlt
+                        className="ml-1 is-size-5"/></Link>
                 <a href="#" className="card-footer-item red-color">Delete <MdDelete className="ml-1 is-size-5"/></a>
             </footer>
         </div>;
@@ -54,6 +58,7 @@ const UserAddress = () => {
         <div className="address-cards">
             {allSavedAddresses}
         </div>
+        <Link to={addNewAddress}>Add New Address</Link>
     </div>);
 };
 
