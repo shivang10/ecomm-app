@@ -3,9 +3,15 @@ import React from "react";
 import {BsFillBoxSeamFill} from "react-icons/bs";
 import {CgProfile} from "react-icons/cg";
 import {FaRegAddressCard} from "react-icons/fa";
-import {MdPayment} from "react-icons/md";
+import {MdPayment, MdSecurity} from "react-icons/md";
 
-import {ordersPlacedLink, paymentMethodsLink, userAddressLink, userProfileLink} from "../../../Routes/routesLink";
+import {
+    changePasswordLink,
+    ordersPlacedLink,
+    paymentMethodsLink,
+    userAddressLink,
+    userProfileLink
+} from "../../../Routes/routesLink";
 
 const userAccount = [
     {
@@ -19,6 +25,14 @@ const userAccount = [
         icon: <FaRegAddressCard/>,
         description: "View and edit your addresses",
         styles: "green-color-1"
+    },
+    {
+        name: "Change Password",
+        url: changePasswordLink,
+        type: "url",
+        icon: <MdSecurity/>,
+        description: "Change your existing password",
+        styles: "yellow-color"
     },
     {
         name: "Payment Methods",

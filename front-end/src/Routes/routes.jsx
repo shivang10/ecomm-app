@@ -7,6 +7,7 @@ import PublicRoute from "./publicRoute";
 import {
     accountLink,
     addNewAddress,
+    changePasswordLink,
     editUserAddress,
     homepageLink,
     sellerAddressLink,
@@ -31,7 +32,7 @@ const SellerLogin = lazy(() => import("../Pages/Seller/Auth/seller-login"));
 const MyAccount = lazy(() => import("../Pages/Common/account/account"));
 const AddNewAddress = lazy(() => import("../Pages/User/Address/add-new-address"));
 const EditUserAddress = lazy(() => import("../Pages/User/Address/edit-user-address"));
-
+const ChangeUserPassword = lazy(() => import("../Pages/User/Auth/change-password"));
 
 const PageRoutes = () => {
     return (<Suspense fallback={<div>...</div>}>
@@ -45,6 +46,7 @@ const PageRoutes = () => {
                 <Route exact path={userAddressLink} element={<UserAddress/>}/>
                 <Route exact path={addNewAddress} element={<AddNewAddress/>}/>
                 <Route exact path={editUserAddress} element={<EditUserAddress/>}/>
+                <Route exact path={changePasswordLink} element={<ChangeUserPassword/>}/>
             </Route>
             <Route path={homepageLink} element={<PublicRoute/>}>
                 <Route exact path={userLoginLink} element={<UserLogin/>}/>
