@@ -7,7 +7,7 @@ import {MdPayment, MdSecurity} from "react-icons/md";
 
 import {
     changePasswordLink,
-    ordersPlacedLink,
+    getUserOrdersLink,
     paymentMethodsLink,
     userAddressLink,
     userProfileLink
@@ -44,7 +44,7 @@ const userAccount = [
     },
     {
         name: "Orders",
-        url: ordersPlacedLink,
+        url: getUserOrdersLink,
         type: "url",
         icon: <BsFillBoxSeamFill/>,
         description: "View your all orders",

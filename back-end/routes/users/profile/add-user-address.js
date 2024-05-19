@@ -20,7 +20,7 @@ router.post("/:id", validateSellerToken, async (req, res) => {
         const address = {
             unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
         };
-        const addressSchema = await AddressSchema.create(address);
+        const addressSchema = new AddressSchema(address);
         const response = await UserSchema.updateOne({ _id: userId }, { $push: { address: addressSchema } });
         return res.status(200).send(apiResponse(response, "Address is successfully added."));
     } catch (err) {

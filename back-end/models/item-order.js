@@ -5,11 +5,11 @@ const SingleItemOrdered = new mongoose.Schema({
     quantity: { type: Number, required: true, min: 1 },
     priceBeforeDiscount: { type: Number, required: true, min: 1 },
     priceAfterDiscount: { type: Number, required: true, min: 1 },
-    productId: { type: String, required: true },
-    productVariationId: { type: [String], required: true },
+    productId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Products" },
+    productVariationId: { type: String, required: true },
     productDiscount: { type: Number, required: false, min: 0 },
     orderStatus: { type: String, required: true },
-    sellerId: { type: String, required: true },
+    sellerId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Sellers" },
 });
 
 const model = mongoose.model("SingleItemOrdered", SingleItemOrdered);

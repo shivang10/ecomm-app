@@ -3,7 +3,7 @@ const SingleItemOrder = require("./item-order").schema;
 
 const Orders = new mongoose.Schema({
     paymentMethod: { type: String, required: true },
-    shippingAddress: { type: String, required: true },
+    shippingAddress: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "UserSchema" },
     orderDate: { type: Date, default: Date.now, required: true },
     totalPrice: { type: Number, required: true, min: 1 },
     items: [SingleItemOrder],

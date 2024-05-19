@@ -4,7 +4,7 @@ const Reviews = require("./product-reviews");
 
 const Products = new mongoose.Schema({
     name: { type: String, required: true },
-    sellerId: { type: String, required: true },
+    sellerId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Sellers" },
     tags: { type: [String], req: true },
     variation: { type: [Variation.schema], required: true },
     description: { type: String, required: true },
