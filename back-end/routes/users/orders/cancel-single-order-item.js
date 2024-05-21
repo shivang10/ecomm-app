@@ -17,7 +17,7 @@ router.get("/:uid/:oid/:iid", validateUserToken, async (req, res) => {
         const setQuery = { $set: { "items.$.orderStatus": orderStatusEnums.userCancelled } };
         await OrdersSchema.updateOne(updateQuery, setQuery);
         const updatedOrder = await OrdersSchema.find(updateQuery, { "items.$": 1 });
-        return res.status(200).send(apiResponse(updatedOrder, "Order is successfully cancelled."));
+        return res.status(200).send(apiResponse(updatedOrder, "Item is successfully cancelled."));
     } catch (error) {
         return res.status(500).send(apiResponse(error, "Unable to cancel your order."));
     }

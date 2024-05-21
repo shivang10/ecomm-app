@@ -3,16 +3,20 @@ import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 
 import AddProductRating from "./add-product-rating";
-import {singleOrderInfoService} from "./orders-service";
+import {cancelSingleOrderItemService, cancelWholeOrderService, singleOrderInfoService} from "./orders-service";
 import UpdateProductRating from "./update-product-rating";
 import {setSnackBarStatus} from "../../../Action-Creators/notification-action-creators";
 import {enums} from "../../../Utils/enums/enums";
+import splitCamelCaseAndCapitalize from "../../../Utils/helper-functions/camelCaseAndCapitalize";
+
+const orderCancellationStatus = ["placed", "packed", "outForDelivery"];
 
 const OrderInfo = () => {
 
     const [order, setOrders] = useState({});
     const params = useParams();
     const oid = params.oid;
+    const [cancelWholeOrder, setCancelWholeOrder] = useState(false);
 
     useEffect(() => {
         fetchOrdersData();
@@ -22,6 +26,8 @@ const OrderInfo = () => {
         singleOrderInfoService(oid)
             .then((res) => {
                 const data = res.data.data;
+                const isWholeOrderCancellable = data.items.some((item) => orderCancellationStatus.includes(item.orderStatus));
+                setCancelWholeOrder(isWholeOrderCancellable);
                 setOrders(data);
             })
             .catch((err) => {
@@ -29,6 +35,29 @@ const OrderInfo = () => {
             });
     };
 
+    const handleCancelSingleItem = (productId) => () => {
+        cancelSingleOrderItemService(oid, productId)
+            .then((res) => {
+                const message = res.data.message;
+                setSnackBarStatus(enums.snackBar.success, message);
+                fetchOrdersData();
+            })
+            .catch((err) => {
+                setSnackBarStatus(enums.snackBar.danger, err.message);
+            });
+    };
+
+    const handleCancelWholeOrder = () => {
+        cancelWholeOrderService(oid)
+            .then((res) => {
+                const message = res.data.message;
+                setSnackBarStatus(enums.snackBar.success, message);
+                fetchOrdersData();
+            })
+            .catch((err) => {
+                setSnackBarStatus(enums.snackBar.danger, err.message);
+            });
+    };
 
     if (!order || Object.keys(order).length === 0) {
         return <div>Loading</div>;
@@ -48,6 +77,18 @@ const OrderInfo = () => {
     }
 
     const dateFormat = new Date(order.orderDate);
+
+    const singleItemCancelRow = (item) => {
+        const canItemBeCancelled = orderCancellationStatus.includes(item.orderStatus);
+        if (canItemBeCancelled) {
+            return (
+                <button onClick={handleCancelSingleItem(item._id)}>Cancel this item</button>
+            );
+        } else {
+            const status = splitCamelCaseAndCapitalize(item.orderStatus);
+            return <div>{status}</div>;
+        }
+    };
 
     return (<div>
         <div className="orders-container">
@@ -70,6 +111,7 @@ const OrderInfo = () => {
                         <th>Total Price</th>
                         <th>Order Status</th>
                         <th>Info</th>
+                        <th>Cancel Item</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,6 +125,9 @@ const OrderInfo = () => {
                             <td>{item.totalPrice}</td>
                             <td>{item.orderStatus}</td>
                             <td><Link to={`/product/${item.productId}`}>Info</Link></td>
+                            <td>
+                                {singleItemCancelRow(item)}
+                            </td>
                         </tr>
                         <tr className="order-details">
                             <td colSpan="5">
@@ -100,6 +145,7 @@ const OrderInfo = () => {
             <div>
                 Payment : {order.paymentMethod}
             </div>
+            {cancelWholeOrder && <button onClick={handleCancelWholeOrder}>Cancel Order</button>}
         </div>
     </div>);
 };

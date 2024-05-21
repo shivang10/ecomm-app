@@ -30,7 +30,8 @@ axiosInterceptor.interceptors.response.use(
         return response;
     },
     (error) => {
-        setSnackBarStatus(enums.snackBar.danger, error.response.data.message);
+        const message = error.message;
+        setSnackBarStatus(enums.snackBar.danger, message);
         return Promise.reject(error);
     }
 );
