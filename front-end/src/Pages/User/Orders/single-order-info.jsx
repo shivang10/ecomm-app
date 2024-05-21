@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 
 import {Link, useParams} from "react-router-dom";
 
+import AddProductRating from "./add-product-rating";
 import {singleOrderInfoService} from "./orders-service";
+import UpdateProductRating from "./update-product-rating";
 import {setSnackBarStatus} from "../../../Action-Creators/notification-action-creators";
 import {enums} from "../../../Utils/enums/enums";
 
@@ -73,7 +75,7 @@ const OrderInfo = () => {
                 <tbody>
                     {order.items.map((item) => (<React.Fragment key={item._id}>
                         <tr key={item.productId}>
-                            <td>{item._id}</td>
+                            <td>{item.productId}</td>
                             <td>{item.name}</td>
                             <td>{item.priceBeforeDiscount}</td>
                             <td>{item.priceAfterDiscount}</td>
@@ -81,6 +83,16 @@ const OrderInfo = () => {
                             <td>{item.totalPrice}</td>
                             <td>{item.orderStatus}</td>
                             <td><Link to={`/product/${item.productId}`}>Info</Link></td>
+                        </tr>
+                        <tr className="order-details">
+                            <td colSpan="5">
+                                {Object.keys(item.review).length === 0 ?
+                                    <AddProductRating orderId={oid} itemId={item.productId}/> :
+                                    <UpdateProductRating orderId={oid} itemId={item.productId}
+                                        rid={item.review._id} rating={item.review.rating}
+                                        description={item.review.description}/>
+                                }
+                            </td>
                         </tr>
                     </React.Fragment>))}
                 </tbody>

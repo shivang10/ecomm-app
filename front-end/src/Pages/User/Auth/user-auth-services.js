@@ -2,7 +2,7 @@ import {getProfileId} from "../../../Utils/auth/profile-auth-operations";
 import axiosInterceptor from "../../../Utils/services/axios-interceptor";
 
 export const userLoginURL = "/user/auth/login";
-export const userRegisterURL = "/user-register";
+export const userRegisterURL = "/user/auth/register";
 export const userChangePasswordURL = "/user/auth/change-password/:id";
 
 export const userAuthLoginService = async (userLoginData) => await axiosInterceptor.post(userLoginURL, userLoginData);

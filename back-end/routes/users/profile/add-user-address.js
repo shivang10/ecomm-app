@@ -2,12 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 const apiResponse = require("../../../utils/api-response");
-const validateSellerToken = require("../../../middlewares/validate-seller-token");
 const AddressSchema = require("../../../models/address");
 const UserSchema = require("../../../models/user");
 const generateObjectId = require("../../../utils/generate-object-id");
+const validateUserToken = require("../../../middlewares/validate-user-token");
 
-router.post("/:id", validateSellerToken, async (req, res) => {
+router.post("/:id", validateUserToken, async (req, res) => {
     const userId = generateObjectId(req.params.id);
     const {
         unitNumber, streetNo, locality, landmark, city, state, pinCode, country,
